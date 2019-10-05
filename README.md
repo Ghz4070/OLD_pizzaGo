@@ -1,5 +1,5 @@
-## Projet app - commande de Pizza
-# MySQL with Docker Example
+# Projet app - commande de Pizza
+## MySQL with Docker Example
 
 This example shows how to **set up Prisma using Docker and MySQL** locally on your machine. It then uses the Prisma client in a simple Node script to read and write data in the database.
 
