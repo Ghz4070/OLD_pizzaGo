@@ -1,5 +1,5 @@
 # Projet app - commande de Pizza
-## MySQL with Docker Example
+## MySQL with Docker
 
 This example shows how to **set up Prisma using Docker and MySQL** locally on your machine. It then uses the Prisma client in a simple Node script to read and write data in the database.
 
@@ -7,24 +7,26 @@ This example shows how to **set up Prisma using Docker and MySQL** locally on yo
 
 ## How to use
 
-### 1. Download example & install dependencies
+### 1. Download app & install dependencies
 
 Clone the repository:
 
 ```
-git clone git@github.com:prisma/prisma-examples.git
+git clone git@github.com:Ghz4070/pizzaGo.git 
 ```
 
 Install Node dependencies:
 
 ```
-cd prisma-examples/node/docker-mysql
+cd pizzaGo/back
 npm install
+	ou
+yarn install
 ```
 
 ### 2. Launch Prisma with Docker
 
-This example is based on Docker. If you don't have Docker installed, you can get it from [here](https://store.docker.com/search?type=edition&offering=community). Use the Docker Compose CLI to launch the Docker containers specified in [docker-compose.yml](./docker-compose.yml):
+This example is based on Docker. If you don't have Docker installed, you can get it from [here](https://store.docker.com/search?type=edition&offering=community). Use the Docker Compose CLI to launch the Docker containers specified in [docker-compose.yml](./back/docker-compose.yml):
 
 ```
 docker-compose up -d
@@ -36,6 +38,8 @@ To run the example, you need the Prisma CLI. Please install it via NPM or [using
 
 ```
 npm install -g prisma
+	ou
+yarn global add prisma  
 ```
 
 ### 4. Set up database & deploy Prisma datamodel
@@ -52,6 +56,8 @@ Execute the script with this command:
 
 ```
 npm run start
+	ou 
+yarn start
 ```
 
 ## Next steps
