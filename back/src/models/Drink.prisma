@@ -1,0 +1,6 @@
+type Drink {
+    id: ID! @id
+    price: Float!
+    name: String!
+    oz: Float!
+}

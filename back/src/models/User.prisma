@@ -1,0 +1,13 @@
+type User {
+    id: ID! @id
+    firstname: String!
+    lastname: String!
+    address: String!
+    zip: Int!
+    country: String!
+    tel: String!
+    email: String!
+    password: String!
+    role: Json!
+    tokenActivate: String!
+}

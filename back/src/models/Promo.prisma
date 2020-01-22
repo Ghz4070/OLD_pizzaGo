@@ -1,0 +1,5 @@
+type Promo {
+    id: ID! @id
+    name: String!
+    promo: Int!
+}

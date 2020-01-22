@@ -1,0 +1,6 @@
+type Ingredient {
+    id: ID! @id
+    price: Float!
+    quantity: Float!
+    name: String!
+}

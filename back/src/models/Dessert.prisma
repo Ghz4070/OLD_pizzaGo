@@ -1,0 +1,5 @@
+type Dessert {
+    id: ID! @id
+    price: Float!
+    name: String!
+}

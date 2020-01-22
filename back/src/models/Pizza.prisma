@@ -1,0 +1,8 @@
+type Pizza {
+    id: ID! @id
+    price: Float!
+    size: String!
+    composition: Json!
+    ingredient: Ingredient @relation(link: INLINE)
+    category: Category @relation(link: INLINE)  
+}

@@ -1,0 +1,10 @@
+type Order {
+    id: ID! @id
+    price: Float!
+    date: DateTime! @createdAt
+    status: Float! @default(value: 1)
+    user: User @relation(link: INLINE)  
+    pizza: Json!
+    dessert: Json!
+    drink: Json!
+}
