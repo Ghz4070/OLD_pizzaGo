@@ -15,7 +15,7 @@ async function main() {
         },
         tokenActivate:'a'
     })
-
+    /*
     await prisma.createOrder({
         price: 10.50,
         pizza: {
@@ -30,7 +30,7 @@ async function main() {
         user: {
 
         }
-    })
+    })*/
 }
 
 main().catch(e => console.error(e));
