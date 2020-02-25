@@ -2,12 +2,12 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode } from "graphql";
+import { DocumentNode } from "./node_modules/graphql";
 import {
   makePrismaClientClass,
   BaseClientOptions,
   Model
-} from "prisma-client-lib";
+} from "./node_modules/prisma-client-lib";
 import { typeDefs } from "./prisma-schema";
 
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
