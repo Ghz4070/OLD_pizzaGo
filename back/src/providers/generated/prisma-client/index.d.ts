@@ -335,7 +335,11 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type CategoryOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC";
 
 export type DessertOrderByInput =
   | "id_ASC"
@@ -381,12 +385,6 @@ export type OrderOrderByInput =
   | "drink_ASC"
   | "drink_DESC";
 
-export type CategoryOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "name_ASC"
-  | "name_DESC";
-
 export type PizzaOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -421,57 +419,203 @@ export type UserOrderByInput =
   | "tokenActivate_ASC"
   | "tokenActivate_DESC";
 
-export interface IngredientCreateOneInput {
-  create?: Maybe<IngredientCreateInput>;
-  connect?: Maybe<IngredientWhereUniqueInput>;
-}
-
-export interface DessertCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  name: String;
-}
-
-export interface UserUpdateDataInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  address?: Maybe<String>;
-  zip?: Maybe<Int>;
-  country?: Maybe<String>;
-  tel?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  role?: Maybe<Json>;
-  tokenActivate?: Maybe<String>;
-}
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type CategoryWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface UserUpdateOneInput {
-  create?: Maybe<UserCreateInput>;
-  update?: Maybe<UserUpdateDataInput>;
-  upsert?: Maybe<UserUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface CategoryWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+  OR?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+  NOT?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
 }
 
-export interface CategorySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<CategoryWhereInput>;
-  AND?: Maybe<
-    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
-  >;
-  OR?: Maybe<CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput>;
-  NOT?: Maybe<
-    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
-  >;
+export type DessertWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DessertWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<DessertWhereInput[] | DessertWhereInput>;
+  OR?: Maybe<DessertWhereInput[] | DessertWhereInput>;
+  NOT?: Maybe<DessertWhereInput[] | DessertWhereInput>;
 }
+
+export type DrinkWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DrinkWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  oz?: Maybe<Float>;
+  oz_not?: Maybe<Float>;
+  oz_in?: Maybe<Float[] | Float>;
+  oz_not_in?: Maybe<Float[] | Float>;
+  oz_lt?: Maybe<Float>;
+  oz_lte?: Maybe<Float>;
+  oz_gt?: Maybe<Float>;
+  oz_gte?: Maybe<Float>;
+  AND?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+  OR?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+  NOT?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+}
+
+export type IngredientWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface IngredientWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  quantity_not?: Maybe<Float>;
+  quantity_in?: Maybe<Float[] | Float>;
+  quantity_not_in?: Maybe<Float[] | Float>;
+  quantity_lt?: Maybe<Float>;
+  quantity_lte?: Maybe<Float>;
+  quantity_gt?: Maybe<Float>;
+  quantity_gte?: Maybe<Float>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
+  OR?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
+  NOT?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
+}
+
+export type OrderWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface OrderWhereInput {
   id?: Maybe<ID_Input>;
@@ -516,19 +660,6 @@ export interface OrderWhereInput {
   AND?: Maybe<OrderWhereInput[] | OrderWhereInput>;
   OR?: Maybe<OrderWhereInput[] | OrderWhereInput>;
   NOT?: Maybe<OrderWhereInput[] | OrderWhereInput>;
-}
-
-export interface UserUpdateManyMutationInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  address?: Maybe<String>;
-  zip?: Maybe<Int>;
-  country?: Maybe<String>;
-  tel?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  role?: Maybe<Json>;
-  tokenActivate?: Maybe<String>;
 }
 
 export interface UserWhereInput {
@@ -671,138 +802,7 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface DessertWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<DessertWhereInput[] | DessertWhereInput>;
-  OR?: Maybe<DessertWhereInput[] | DessertWhereInput>;
-  NOT?: Maybe<DessertWhereInput[] | DessertWhereInput>;
-}
-
-export interface OrderSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<OrderWhereInput>;
-  AND?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-  OR?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-  NOT?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-}
-
-export interface PizzaUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  size?: Maybe<String>;
-  composition?: Maybe<Json>;
-}
-
-export interface OrderUpdateInput {
-  price?: Maybe<Float>;
-  status?: Maybe<Float>;
-  user?: Maybe<UserUpdateOneInput>;
-  pizza?: Maybe<Json>;
-  dessert?: Maybe<Json>;
-  drink?: Maybe<Json>;
-}
-
-export interface CategoryUpdateDataInput {
-  name?: Maybe<String>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstname: String;
-  lastname: String;
-  address: String;
-  zip: Int;
-  country: String;
-  tel: String;
-  email: String;
-  password: String;
-  role: Json;
-  tokenActivate: String;
-}
-
-export interface CategoryUpdateOneInput {
-  create?: Maybe<CategoryCreateInput>;
-  update?: Maybe<CategoryUpdateDataInput>;
-  upsert?: Maybe<CategoryUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<CategoryWhereUniqueInput>;
-}
-
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
-}
-
-export interface DrinkSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DrinkWhereInput>;
-  AND?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
-  OR?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
-  NOT?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
-}
-
 export type PizzaWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface IngredientUpdateDataInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
-}
-
-export interface OrderCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  status?: Maybe<Float>;
-  user?: Maybe<UserCreateOneInput>;
-  pizza: Json;
-  dessert: Json;
-  drink: Json;
-}
-
-export type IngredientWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -850,99 +850,148 @@ export interface PizzaWhereInput {
   NOT?: Maybe<PizzaWhereInput[] | PizzaWhereInput>;
 }
 
-export interface IngredientWhereInput {
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CategoryCreateInput {
   id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface CategoryUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface CategoryUpdateManyMutationInput {
+  name?: Maybe<String>;
+}
+
+export interface DessertCreateInput {
+  id?: Maybe<ID_Input>;
+  price: Float;
+  name: String;
+}
+
+export interface DessertUpdateInput {
   price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  quantity_not?: Maybe<Float>;
-  quantity_in?: Maybe<Float[] | Float>;
-  quantity_not_in?: Maybe<Float[] | Float>;
-  quantity_lt?: Maybe<Float>;
-  quantity_lte?: Maybe<Float>;
-  quantity_gt?: Maybe<Float>;
-  quantity_gte?: Maybe<Float>;
   name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
-  OR?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
-  NOT?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
 }
 
-export interface CategoryWhereInput {
+export interface DessertUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+}
+
+export interface DrinkCreateInput {
   id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
-  OR?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
-  NOT?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
+  price: Float;
+  name: String;
+  oz: Float;
 }
 
-export interface CategoryCreateOneInput {
-  create?: Maybe<CategoryCreateInput>;
-  connect?: Maybe<CategoryWhereUniqueInput>;
+export interface DrinkUpdateInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+  oz?: Maybe<Float>;
+}
+
+export interface DrinkUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+  oz?: Maybe<Float>;
+}
+
+export interface IngredientCreateInput {
+  id?: Maybe<ID_Input>;
+  price: Float;
+  quantity: Float;
+  name: String;
+}
+
+export interface IngredientUpdateInput {
+  price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  name?: Maybe<String>;
 }
 
 export interface IngredientUpdateManyMutationInput {
   price?: Maybe<Float>;
   quantity?: Maybe<Float>;
   name?: Maybe<String>;
+}
+
+export interface OrderCreateInput {
+  id?: Maybe<ID_Input>;
+  price: Float;
+  status?: Maybe<Float>;
+  user?: Maybe<UserCreateOneInput>;
+  pizza: Json;
+  dessert: Json;
+  drink: Json;
+}
+
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstname: String;
+  lastname: String;
+  address: String;
+  zip: Int;
+  country: String;
+  tel: String;
+  email: String;
+  password: String;
+  role: Json;
+  tokenActivate: String;
+}
+
+export interface OrderUpdateInput {
+  price?: Maybe<Float>;
+  status?: Maybe<Float>;
+  user?: Maybe<UserUpdateOneInput>;
+  pizza?: Maybe<Json>;
+  dessert?: Maybe<Json>;
+  drink?: Maybe<Json>;
+}
+
+export interface UserUpdateOneInput {
+  create?: Maybe<UserCreateInput>;
+  update?: Maybe<UserUpdateDataInput>;
+  upsert?: Maybe<UserUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateDataInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  address?: Maybe<String>;
+  zip?: Maybe<Int>;
+  country?: Maybe<String>;
+  tel?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<Json>;
+  tokenActivate?: Maybe<String>;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface OrderUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  status?: Maybe<Float>;
+  pizza?: Maybe<Json>;
+  dessert?: Maybe<Json>;
+  drink?: Maybe<Json>;
 }
 
 export interface PizzaCreateInput {
@@ -954,76 +1003,14 @@ export interface PizzaCreateInput {
   category?: Maybe<CategoryCreateOneInput>;
 }
 
-export interface IngredientUpdateInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
+export interface IngredientCreateOneInput {
+  create?: Maybe<IngredientCreateInput>;
+  connect?: Maybe<IngredientWhereUniqueInput>;
 }
 
-export interface OrderUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  status?: Maybe<Float>;
-  pizza?: Maybe<Json>;
-  dessert?: Maybe<Json>;
-  drink?: Maybe<Json>;
-}
-
-export interface IngredientCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  quantity: Float;
-  name: String;
-}
-
-export type DessertWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface DessertSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DessertWhereInput>;
-  AND?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
-  OR?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
-  NOT?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
-}
-
-export interface PizzaSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PizzaWhereInput>;
-  AND?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
-  OR?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
-  NOT?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
-}
-
-export type DrinkWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface DrinkUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
-  oz?: Maybe<Float>;
-}
-
-export interface IngredientUpsertNestedInput {
-  update: IngredientUpdateDataInput;
-  create: IngredientCreateInput;
-}
-
-export interface DrinkUpdateInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
-  oz?: Maybe<Float>;
+export interface CategoryCreateOneInput {
+  create?: Maybe<CategoryCreateInput>;
+  connect?: Maybe<CategoryWhereUniqueInput>;
 }
 
 export interface PizzaUpdateInput {
@@ -1034,32 +1021,37 @@ export interface PizzaUpdateInput {
   category?: Maybe<CategoryUpdateOneInput>;
 }
 
-export interface DrinkCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  name: String;
-  oz: Float;
+export interface IngredientUpdateOneInput {
+  create?: Maybe<IngredientCreateInput>;
+  update?: Maybe<IngredientUpdateDataInput>;
+  upsert?: Maybe<IngredientUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<IngredientWhereUniqueInput>;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-}
-
-export interface DessertUpdateManyMutationInput {
+export interface IngredientUpdateDataInput {
   price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
   name?: Maybe<String>;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
+export interface IngredientUpsertNestedInput {
+  update: IngredientUpdateDataInput;
+  create: IngredientCreateInput;
+}
+
+export interface CategoryUpdateOneInput {
+  create?: Maybe<CategoryCreateInput>;
+  update?: Maybe<CategoryUpdateDataInput>;
+  upsert?: Maybe<CategoryUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<CategoryWhereUniqueInput>;
+}
+
+export interface CategoryUpdateDataInput {
+  name?: Maybe<String>;
 }
 
 export interface CategoryUpsertNestedInput {
@@ -1067,72 +1059,10 @@ export interface CategoryUpsertNestedInput {
   create: CategoryCreateInput;
 }
 
-export interface DessertUpdateInput {
+export interface PizzaUpdateManyMutationInput {
   price?: Maybe<Float>;
-  name?: Maybe<String>;
-}
-
-export interface CategoryUpdateManyMutationInput {
-  name?: Maybe<String>;
-}
-
-export interface CategoryUpdateInput {
-  name?: Maybe<String>;
-}
-
-export interface CategoryCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-}
-
-export interface DrinkWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  oz?: Maybe<Float>;
-  oz_not?: Maybe<Float>;
-  oz_in?: Maybe<Float[] | Float>;
-  oz_not_in?: Maybe<Float[] | Float>;
-  oz_lt?: Maybe<Float>;
-  oz_lte?: Maybe<Float>;
-  oz_gt?: Maybe<Float>;
-  oz_gte?: Maybe<Float>;
-  AND?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
-  OR?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
-  NOT?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+  size?: Maybe<String>;
+  composition?: Maybe<Json>;
 }
 
 export interface UserUpdateInput {
@@ -1148,9 +1078,55 @@ export interface UserUpdateInput {
   tokenActivate?: Maybe<String>;
 }
 
-export type OrderWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface UserUpdateManyMutationInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  address?: Maybe<String>;
+  zip?: Maybe<Int>;
+  country?: Maybe<String>;
+  tel?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<Json>;
+  tokenActivate?: Maybe<String>;
+}
+
+export interface CategorySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<CategoryWhereInput>;
+  AND?: Maybe<
+    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
+  >;
+  OR?: Maybe<CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput>;
+  NOT?: Maybe<
+    CategorySubscriptionWhereInput[] | CategorySubscriptionWhereInput
+  >;
+}
+
+export interface DessertSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<DessertWhereInput>;
+  AND?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+  OR?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+  NOT?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+}
+
+export interface DrinkSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<DrinkWhereInput>;
+  AND?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
+  OR?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
+  NOT?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
+}
 
 export interface IngredientSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
@@ -1169,17 +1145,193 @@ export interface IngredientSubscriptionWhereInput {
   >;
 }
 
-export interface IngredientUpdateOneInput {
-  create?: Maybe<IngredientCreateInput>;
-  update?: Maybe<IngredientUpdateDataInput>;
-  upsert?: Maybe<IngredientUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<IngredientWhereUniqueInput>;
+export interface OrderSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<OrderWhereInput>;
+  AND?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
+  OR?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
+  NOT?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
+}
+
+export interface PizzaSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PizzaWhereInput>;
+  AND?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
+  OR?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
+  NOT?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
+}
+
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface Category {
+  id: ID_Output;
+  name: String;
+}
+
+export interface CategoryPromise extends Promise<Category>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface CategorySubscription
+  extends Promise<AsyncIterator<Category>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CategoryNullablePromise
+  extends Promise<Category | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface CategoryConnection {
+  pageInfo: PageInfo;
+  edges: CategoryEdge[];
+}
+
+export interface CategoryConnectionPromise
+  extends Promise<CategoryConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<CategoryEdge>>() => T;
+  aggregate: <T = AggregateCategoryPromise>() => T;
+}
+
+export interface CategoryConnectionSubscription
+  extends Promise<AsyncIterator<CategoryConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<CategoryEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateCategorySubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface CategoryEdge {
+  node: Category;
+  cursor: String;
+}
+
+export interface CategoryEdgePromise
+  extends Promise<CategoryEdge>,
+    Fragmentable {
+  node: <T = CategoryPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface CategoryEdgeSubscription
+  extends Promise<AsyncIterator<CategoryEdge>>,
+    Fragmentable {
+  node: <T = CategorySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateCategory {
+  count: Int;
+}
+
+export interface AggregateCategoryPromise
+  extends Promise<AggregateCategory>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateCategorySubscription
+  extends Promise<AsyncIterator<AggregateCategory>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Dessert {
+  id: ID_Output;
+  price: Float;
+  name: String;
+}
+
+export interface DessertPromise extends Promise<Dessert>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  name: () => Promise<String>;
+}
+
+export interface DessertSubscription
+  extends Promise<AsyncIterator<Dessert>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface DessertNullablePromise
+  extends Promise<Dessert | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  name: () => Promise<String>;
+}
+
+export interface DessertConnection {
+  pageInfo: PageInfo;
+  edges: DessertEdge[];
+}
+
+export interface DessertConnectionPromise
+  extends Promise<DessertConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DessertEdge>>() => T;
+  aggregate: <T = AggregateDessertPromise>() => T;
+}
+
+export interface DessertConnectionSubscription
+  extends Promise<AsyncIterator<DessertConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DessertEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDessertSubscription>() => T;
 }
 
 export interface DessertEdge {
@@ -1199,50 +1351,20 @@ export interface DessertEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserPreviousValues {
-  id: ID_Output;
-  firstname: String;
-  lastname: String;
-  address: String;
-  zip: Int;
-  country: String;
-  tel: String;
-  email: String;
-  password: String;
-  role: Json;
-  tokenActivate: String;
+export interface AggregateDessert {
+  count: Int;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface AggregateDessertPromise
+  extends Promise<AggregateDessert>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstname: () => Promise<String>;
-  lastname: () => Promise<String>;
-  address: () => Promise<String>;
-  zip: () => Promise<Int>;
-  country: () => Promise<String>;
-  tel: () => Promise<String>;
-  email: () => Promise<String>;
-  password: () => Promise<String>;
-  role: () => Promise<Json>;
-  tokenActivate: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface AggregateDessertSubscription
+  extends Promise<AsyncIterator<AggregateDessert>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  firstname: () => Promise<AsyncIterator<String>>;
-  lastname: () => Promise<AsyncIterator<String>>;
-  address: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<Int>>;
-  country: () => Promise<AsyncIterator<String>>;
-  tel: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  password: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<Json>>;
-  tokenActivate: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface Drink {
@@ -1277,388 +1399,90 @@ export interface DrinkNullablePromise
   oz: () => Promise<Float>;
 }
 
-export interface OrderSubscriptionPayload {
-  mutation: MutationType;
-  node: Order;
-  updatedFields: String[];
-  previousValues: OrderPreviousValues;
-}
-
-export interface OrderSubscriptionPayloadPromise
-  extends Promise<OrderSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = OrderPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = OrderPreviousValuesPromise>() => T;
-}
-
-export interface OrderSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<OrderSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = OrderSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = OrderPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateDessert {
-  count: Int;
-}
-
-export interface AggregateDessertPromise
-  extends Promise<AggregateDessert>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDessertSubscription
-  extends Promise<AsyncIterator<AggregateDessert>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DessertConnection {
+export interface DrinkConnection {
   pageInfo: PageInfo;
-  edges: DessertEdge[];
+  edges: DrinkEdge[];
 }
 
-export interface DessertConnectionPromise
-  extends Promise<DessertConnection>,
+export interface DrinkConnectionPromise
+  extends Promise<DrinkConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DessertEdge>>() => T;
-  aggregate: <T = AggregateDessertPromise>() => T;
+  edges: <T = FragmentableArray<DrinkEdge>>() => T;
+  aggregate: <T = AggregateDrinkPromise>() => T;
 }
 
-export interface DessertConnectionSubscription
-  extends Promise<AsyncIterator<DessertConnection>>,
+export interface DrinkConnectionSubscription
+  extends Promise<AsyncIterator<DrinkConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DessertEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDessertSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DrinkEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDrinkSubscription>() => T;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface DrinkEdge {
+  node: Drink;
+  cursor: String;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface DrinkEdgePromise extends Promise<DrinkEdge>, Fragmentable {
+  node: <T = DrinkPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DrinkEdgeSubscription
+  extends Promise<AsyncIterator<DrinkEdge>>,
     Fragmentable {
-  count: () => Promise<Long>;
+  node: <T = DrinkSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface AggregateUser {
+export interface AggregateDrink {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
+export interface AggregateDrinkPromise
+  extends Promise<AggregateDrink>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
+export interface AggregateDrinkSubscription
+  extends Promise<AsyncIterator<AggregateDrink>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface PizzaEdge {
-  node: Pizza;
-  cursor: String;
-}
-
-export interface PizzaEdgePromise extends Promise<PizzaEdge>, Fragmentable {
-  node: <T = PizzaPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface PizzaEdgeSubscription
-  extends Promise<AsyncIterator<PizzaEdge>>,
-    Fragmentable {
-  node: <T = PizzaSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface PizzaPreviousValues {
+export interface Ingredient {
   id: ID_Output;
   price: Float;
-  size: String;
-  composition: Json;
-}
-
-export interface PizzaPreviousValuesPromise
-  extends Promise<PizzaPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  size: () => Promise<String>;
-  composition: () => Promise<Json>;
-}
-
-export interface PizzaPreviousValuesSubscription
-  extends Promise<AsyncIterator<PizzaPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  size: () => Promise<AsyncIterator<String>>;
-  composition: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface Pizza {
-  id: ID_Output;
-  price: Float;
-  size: String;
-  composition: Json;
-}
-
-export interface PizzaPromise extends Promise<Pizza>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  size: () => Promise<String>;
-  composition: () => Promise<Json>;
-  ingredient: <T = IngredientPromise>() => T;
-  category: <T = CategoryPromise>() => T;
-}
-
-export interface PizzaSubscription
-  extends Promise<AsyncIterator<Pizza>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  size: () => Promise<AsyncIterator<String>>;
-  composition: () => Promise<AsyncIterator<Json>>;
-  ingredient: <T = IngredientSubscription>() => T;
-  category: <T = CategorySubscription>() => T;
-}
-
-export interface PizzaNullablePromise
-  extends Promise<Pizza | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  size: () => Promise<String>;
-  composition: () => Promise<Json>;
-  ingredient: <T = IngredientPromise>() => T;
-  category: <T = CategoryPromise>() => T;
-}
-
-export interface Dessert {
-  id: ID_Output;
-  price: Float;
+  quantity: Float;
   name: String;
 }
 
-export interface DessertPromise extends Promise<Dessert>, Fragmentable {
+export interface IngredientPromise extends Promise<Ingredient>, Fragmentable {
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
+  quantity: () => Promise<Float>;
   name: () => Promise<String>;
 }
 
-export interface DessertSubscription
-  extends Promise<AsyncIterator<Dessert>>,
+export interface IngredientSubscription
+  extends Promise<AsyncIterator<Ingredient>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   price: () => Promise<AsyncIterator<Float>>;
+  quantity: () => Promise<AsyncIterator<Float>>;
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DessertNullablePromise
-  extends Promise<Dessert | null>,
+export interface IngredientNullablePromise
+  extends Promise<Ingredient | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
+  quantity: () => Promise<Float>;
   name: () => Promise<String>;
-}
-
-export interface OrderEdge {
-  node: Order;
-  cursor: String;
-}
-
-export interface OrderEdgePromise extends Promise<OrderEdge>, Fragmentable {
-  node: <T = OrderPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface OrderEdgeSubscription
-  extends Promise<AsyncIterator<OrderEdge>>,
-    Fragmentable {
-  node: <T = OrderSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateCategory {
-  count: Int;
-}
-
-export interface AggregateCategoryPromise
-  extends Promise<AggregateCategory>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateCategorySubscription
-  extends Promise<AsyncIterator<AggregateCategory>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface UserSubscriptionPayload {
-  mutation: MutationType;
-  node: User;
-  updatedFields: String[];
-  previousValues: UserPreviousValues;
-}
-
-export interface UserSubscriptionPayloadPromise
-  extends Promise<UserSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = UserPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = UserPreviousValuesPromise>() => T;
-}
-
-export interface UserSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = UserSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = UserPreviousValuesSubscription>() => T;
-}
-
-export interface CategoryEdge {
-  node: Category;
-  cursor: String;
-}
-
-export interface CategoryEdgePromise
-  extends Promise<CategoryEdge>,
-    Fragmentable {
-  node: <T = CategoryPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface CategoryEdgeSubscription
-  extends Promise<AsyncIterator<CategoryEdge>>,
-    Fragmentable {
-  node: <T = CategorySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface Category {
-  id: ID_Output;
-  name: String;
-}
-
-export interface CategoryPromise extends Promise<Category>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface CategorySubscription
-  extends Promise<AsyncIterator<Category>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface CategoryNullablePromise
-  extends Promise<Category | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface CategorySubscriptionPayload {
-  mutation: MutationType;
-  node: Category;
-  updatedFields: String[];
-  previousValues: CategoryPreviousValues;
-}
-
-export interface CategorySubscriptionPayloadPromise
-  extends Promise<CategorySubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = CategoryPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = CategoryPreviousValuesPromise>() => T;
-}
-
-export interface CategorySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<CategorySubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = CategorySubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = CategoryPreviousValuesSubscription>() => T;
-}
-
-export interface AggregateIngredient {
-  count: Int;
-}
-
-export interface AggregateIngredientPromise
-  extends Promise<AggregateIngredient>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateIngredientSubscription
-  extends Promise<AsyncIterator<AggregateIngredient>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface CategoryPreviousValues {
-  id: ID_Output;
-  name: String;
-}
-
-export interface CategoryPreviousValuesPromise
-  extends Promise<CategoryPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-}
-
-export interface CategoryPreviousValuesSubscription
-  extends Promise<AsyncIterator<CategoryPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface IngredientConnection {
@@ -1682,193 +1506,86 @@ export interface IngredientConnectionSubscription
   aggregate: <T = AggregateIngredientSubscription>() => T;
 }
 
-export interface PizzaSubscriptionPayload {
-  mutation: MutationType;
-  node: Pizza;
-  updatedFields: String[];
-  previousValues: PizzaPreviousValues;
+export interface IngredientEdge {
+  node: Ingredient;
+  cursor: String;
 }
 
-export interface PizzaSubscriptionPayloadPromise
-  extends Promise<PizzaSubscriptionPayload>,
+export interface IngredientEdgePromise
+  extends Promise<IngredientEdge>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = PizzaPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = PizzaPreviousValuesPromise>() => T;
+  node: <T = IngredientPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface PizzaSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<PizzaSubscriptionPayload>>,
+export interface IngredientEdgeSubscription
+  extends Promise<AsyncIterator<IngredientEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = PizzaSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = PizzaPreviousValuesSubscription>() => T;
+  node: <T = IngredientSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateDrink {
+export interface AggregateIngredient {
   count: Int;
 }
 
-export interface AggregateDrinkPromise
-  extends Promise<AggregateDrink>,
+export interface AggregateIngredientPromise
+  extends Promise<AggregateIngredient>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateDrinkSubscription
-  extends Promise<AsyncIterator<AggregateDrink>>,
+export interface AggregateIngredientSubscription
+  extends Promise<AsyncIterator<AggregateIngredient>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface DessertSubscriptionPayload {
-  mutation: MutationType;
-  node: Dessert;
-  updatedFields: String[];
-  previousValues: DessertPreviousValues;
-}
-
-export interface DessertSubscriptionPayloadPromise
-  extends Promise<DessertSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DessertPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DessertPreviousValuesPromise>() => T;
-}
-
-export interface DessertSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DessertSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DessertSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DessertPreviousValuesSubscription>() => T;
-}
-
-export interface DrinkConnection {
-  pageInfo: PageInfo;
-  edges: DrinkEdge[];
-}
-
-export interface DrinkConnectionPromise
-  extends Promise<DrinkConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DrinkEdge>>() => T;
-  aggregate: <T = AggregateDrinkPromise>() => T;
-}
-
-export interface DrinkConnectionSubscription
-  extends Promise<AsyncIterator<DrinkConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DrinkEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDrinkSubscription>() => T;
-}
-
-export interface DessertPreviousValues {
+export interface Order {
   id: ID_Output;
   price: Float;
-  name: String;
+  date: DateTimeOutput;
+  status: Float;
+  pizza: Json;
+  dessert: Json;
+  drink: Json;
 }
 
-export interface DessertPreviousValuesPromise
-  extends Promise<DessertPreviousValues>,
-    Fragmentable {
+export interface OrderPromise extends Promise<Order>, Fragmentable {
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
-  name: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
+  status: () => Promise<Float>;
+  user: <T = UserPromise>() => T;
+  pizza: () => Promise<Json>;
+  dessert: () => Promise<Json>;
+  drink: () => Promise<Json>;
 }
 
-export interface DessertPreviousValuesSubscription
-  extends Promise<AsyncIterator<DessertPreviousValues>>,
+export interface OrderSubscription
+  extends Promise<AsyncIterator<Order>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   price: () => Promise<AsyncIterator<Float>>;
-  name: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
+  status: () => Promise<AsyncIterator<Float>>;
+  user: <T = UserSubscription>() => T;
+  pizza: () => Promise<AsyncIterator<Json>>;
+  dessert: () => Promise<AsyncIterator<Json>>;
+  drink: () => Promise<AsyncIterator<Json>>;
 }
 
-export interface AggregatePizza {
-  count: Int;
-}
-
-export interface AggregatePizzaPromise
-  extends Promise<AggregatePizza>,
+export interface OrderNullablePromise
+  extends Promise<Order | null>,
     Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregatePizzaSubscription
-  extends Promise<AsyncIterator<AggregatePizza>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateOrder {
-  count: Int;
-}
-
-export interface AggregateOrderPromise
-  extends Promise<AggregateOrder>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateOrderSubscription
-  extends Promise<AsyncIterator<AggregateOrder>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface DrinkSubscriptionPayload {
-  mutation: MutationType;
-  node: Drink;
-  updatedFields: String[];
-  previousValues: DrinkPreviousValues;
-}
-
-export interface DrinkSubscriptionPayloadPromise
-  extends Promise<DrinkSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = DrinkPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = DrinkPreviousValuesPromise>() => T;
-}
-
-export interface DrinkSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<DrinkSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = DrinkSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = DrinkPreviousValuesSubscription>() => T;
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  date: () => Promise<DateTimeOutput>;
+  status: () => Promise<Float>;
+  user: <T = UserPromise>() => T;
+  pizza: () => Promise<Json>;
+  dessert: () => Promise<Json>;
+  drink: () => Promise<Json>;
 }
 
 export interface User {
@@ -1931,6 +1648,338 @@ export interface UserNullablePromise
   tokenActivate: () => Promise<String>;
 }
 
+export interface OrderConnection {
+  pageInfo: PageInfo;
+  edges: OrderEdge[];
+}
+
+export interface OrderConnectionPromise
+  extends Promise<OrderConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OrderEdge>>() => T;
+  aggregate: <T = AggregateOrderPromise>() => T;
+}
+
+export interface OrderConnectionSubscription
+  extends Promise<AsyncIterator<OrderConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OrderEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOrderSubscription>() => T;
+}
+
+export interface OrderEdge {
+  node: Order;
+  cursor: String;
+}
+
+export interface OrderEdgePromise extends Promise<OrderEdge>, Fragmentable {
+  node: <T = OrderPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OrderEdgeSubscription
+  extends Promise<AsyncIterator<OrderEdge>>,
+    Fragmentable {
+  node: <T = OrderSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOrder {
+  count: Int;
+}
+
+export interface AggregateOrderPromise
+  extends Promise<AggregateOrder>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateOrderSubscription
+  extends Promise<AsyncIterator<AggregateOrder>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Pizza {
+  id: ID_Output;
+  price: Float;
+  size: String;
+  composition: Json;
+}
+
+export interface PizzaPromise extends Promise<Pizza>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  size: () => Promise<String>;
+  composition: () => Promise<Json>;
+  ingredient: <T = IngredientPromise>() => T;
+  category: <T = CategoryPromise>() => T;
+}
+
+export interface PizzaSubscription
+  extends Promise<AsyncIterator<Pizza>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  size: () => Promise<AsyncIterator<String>>;
+  composition: () => Promise<AsyncIterator<Json>>;
+  ingredient: <T = IngredientSubscription>() => T;
+  category: <T = CategorySubscription>() => T;
+}
+
+export interface PizzaNullablePromise
+  extends Promise<Pizza | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  size: () => Promise<String>;
+  composition: () => Promise<Json>;
+  ingredient: <T = IngredientPromise>() => T;
+  category: <T = CategoryPromise>() => T;
+}
+
+export interface PizzaConnection {
+  pageInfo: PageInfo;
+  edges: PizzaEdge[];
+}
+
+export interface PizzaConnectionPromise
+  extends Promise<PizzaConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PizzaEdge>>() => T;
+  aggregate: <T = AggregatePizzaPromise>() => T;
+}
+
+export interface PizzaConnectionSubscription
+  extends Promise<AsyncIterator<PizzaConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PizzaEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePizzaSubscription>() => T;
+}
+
+export interface PizzaEdge {
+  node: Pizza;
+  cursor: String;
+}
+
+export interface PizzaEdgePromise extends Promise<PizzaEdge>, Fragmentable {
+  node: <T = PizzaPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PizzaEdgeSubscription
+  extends Promise<AsyncIterator<PizzaEdge>>,
+    Fragmentable {
+  node: <T = PizzaSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregatePizza {
+  count: Int;
+}
+
+export interface AggregatePizzaPromise
+  extends Promise<AggregatePizza>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePizzaSubscription
+  extends Promise<AsyncIterator<AggregatePizza>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
+
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface CategorySubscriptionPayload {
+  mutation: MutationType;
+  node: Category;
+  updatedFields: String[];
+  previousValues: CategoryPreviousValues;
+}
+
+export interface CategorySubscriptionPayloadPromise
+  extends Promise<CategorySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = CategoryPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = CategoryPreviousValuesPromise>() => T;
+}
+
+export interface CategorySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<CategorySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = CategorySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = CategoryPreviousValuesSubscription>() => T;
+}
+
+export interface CategoryPreviousValues {
+  id: ID_Output;
+  name: String;
+}
+
+export interface CategoryPreviousValuesPromise
+  extends Promise<CategoryPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+}
+
+export interface CategoryPreviousValuesSubscription
+  extends Promise<AsyncIterator<CategoryPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface DessertSubscriptionPayload {
+  mutation: MutationType;
+  node: Dessert;
+  updatedFields: String[];
+  previousValues: DessertPreviousValues;
+}
+
+export interface DessertSubscriptionPayloadPromise
+  extends Promise<DessertSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DessertPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DessertPreviousValuesPromise>() => T;
+}
+
+export interface DessertSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DessertSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DessertSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DessertPreviousValuesSubscription>() => T;
+}
+
+export interface DessertPreviousValues {
+  id: ID_Output;
+  price: Float;
+  name: String;
+}
+
+export interface DessertPreviousValuesPromise
+  extends Promise<DessertPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  name: () => Promise<String>;
+}
+
+export interface DessertPreviousValuesSubscription
+  extends Promise<AsyncIterator<DessertPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface DrinkSubscriptionPayload {
+  mutation: MutationType;
+  node: Drink;
+  updatedFields: String[];
+  previousValues: DrinkPreviousValues;
+}
+
+export interface DrinkSubscriptionPayloadPromise
+  extends Promise<DrinkSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DrinkPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DrinkPreviousValuesPromise>() => T;
+}
+
+export interface DrinkSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DrinkSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DrinkSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DrinkPreviousValuesSubscription>() => T;
+}
+
 export interface DrinkPreviousValues {
   id: ID_Output;
   price: Float;
@@ -1956,40 +2005,79 @@ export interface DrinkPreviousValuesSubscription
   oz: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface IngredientEdge {
+export interface IngredientSubscriptionPayload {
+  mutation: MutationType;
   node: Ingredient;
-  cursor: String;
+  updatedFields: String[];
+  previousValues: IngredientPreviousValues;
 }
 
-export interface IngredientEdgePromise
-  extends Promise<IngredientEdge>,
+export interface IngredientSubscriptionPayloadPromise
+  extends Promise<IngredientSubscriptionPayload>,
     Fragmentable {
+  mutation: () => Promise<MutationType>;
   node: <T = IngredientPromise>() => T;
-  cursor: () => Promise<String>;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = IngredientPreviousValuesPromise>() => T;
 }
 
-export interface IngredientEdgeSubscription
-  extends Promise<AsyncIterator<IngredientEdge>>,
+export interface IngredientSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<IngredientSubscriptionPayload>>,
     Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = IngredientSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = IngredientPreviousValuesSubscription>() => T;
 }
 
-export interface DrinkEdge {
-  node: Drink;
-  cursor: String;
+export interface IngredientPreviousValues {
+  id: ID_Output;
+  price: Float;
+  quantity: Float;
+  name: String;
 }
 
-export interface DrinkEdgePromise extends Promise<DrinkEdge>, Fragmentable {
-  node: <T = DrinkPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DrinkEdgeSubscription
-  extends Promise<AsyncIterator<DrinkEdge>>,
+export interface IngredientPreviousValuesPromise
+  extends Promise<IngredientPreviousValues>,
     Fragmentable {
-  node: <T = DrinkSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  quantity: () => Promise<Float>;
+  name: () => Promise<String>;
+}
+
+export interface IngredientPreviousValuesSubscription
+  extends Promise<AsyncIterator<IngredientPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  quantity: () => Promise<AsyncIterator<Float>>;
+  name: () => Promise<AsyncIterator<String>>;
+}
+
+export interface OrderSubscriptionPayload {
+  mutation: MutationType;
+  node: Order;
+  updatedFields: String[];
+  previousValues: OrderPreviousValues;
+}
+
+export interface OrderSubscriptionPayloadPromise
+  extends Promise<OrderSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OrderPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OrderPreviousValuesPromise>() => T;
+}
+
+export interface OrderSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OrderSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OrderSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OrderPreviousValuesSubscription>() => T;
 }
 
 export interface OrderPreviousValues {
@@ -2026,216 +2114,126 @@ export interface OrderPreviousValuesSubscription
   drink: () => Promise<AsyncIterator<Json>>;
 }
 
-export interface IngredientPreviousValues {
-  id: ID_Output;
-  price: Float;
-  quantity: Float;
-  name: String;
-}
-
-export interface IngredientPreviousValuesPromise
-  extends Promise<IngredientPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  quantity: () => Promise<Float>;
-  name: () => Promise<String>;
-}
-
-export interface IngredientPreviousValuesSubscription
-  extends Promise<AsyncIterator<IngredientPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  quantity: () => Promise<AsyncIterator<Float>>;
-  name: () => Promise<AsyncIterator<String>>;
-}
-
-export interface IngredientSubscriptionPayload {
+export interface PizzaSubscriptionPayload {
   mutation: MutationType;
-  node: Ingredient;
+  node: Pizza;
   updatedFields: String[];
-  previousValues: IngredientPreviousValues;
+  previousValues: PizzaPreviousValues;
 }
 
-export interface IngredientSubscriptionPayloadPromise
-  extends Promise<IngredientSubscriptionPayload>,
+export interface PizzaSubscriptionPayloadPromise
+  extends Promise<PizzaSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = IngredientPromise>() => T;
+  node: <T = PizzaPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = IngredientPreviousValuesPromise>() => T;
+  previousValues: <T = PizzaPreviousValuesPromise>() => T;
 }
 
-export interface IngredientSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<IngredientSubscriptionPayload>>,
+export interface PizzaSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PizzaSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = IngredientSubscription>() => T;
+  node: <T = PizzaSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = IngredientPreviousValuesSubscription>() => T;
+  previousValues: <T = PizzaPreviousValuesSubscription>() => T;
 }
 
-export interface CategoryConnection {
-  pageInfo: PageInfo;
-  edges: CategoryEdge[];
+export interface PizzaPreviousValues {
+  id: ID_Output;
+  price: Float;
+  size: String;
+  composition: Json;
 }
 
-export interface CategoryConnectionPromise
-  extends Promise<CategoryConnection>,
+export interface PizzaPreviousValuesPromise
+  extends Promise<PizzaPreviousValues>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<CategoryEdge>>() => T;
-  aggregate: <T = AggregateCategoryPromise>() => T;
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  size: () => Promise<String>;
+  composition: () => Promise<Json>;
 }
 
-export interface CategoryConnectionSubscription
-  extends Promise<AsyncIterator<CategoryConnection>>,
+export interface PizzaPreviousValuesSubscription
+  extends Promise<AsyncIterator<PizzaPreviousValues>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<CategoryEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateCategorySubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  size: () => Promise<AsyncIterator<String>>;
+  composition: () => Promise<AsyncIterator<Json>>;
 }
 
-export interface UserEdge {
+export interface UserSubscriptionPayload {
+  mutation: MutationType;
   node: User;
-  cursor: String;
+  updatedFields: String[];
+  previousValues: UserPreviousValues;
 }
 
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+export interface UserSubscriptionPayloadPromise
+  extends Promise<UserSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
   node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = UserPreviousValuesPromise>() => T;
 }
 
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
+export interface UserSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<UserSubscriptionPayload>>,
     Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface Ingredient {
+export interface UserPreviousValues {
   id: ID_Output;
-  price: Float;
-  quantity: Float;
-  name: String;
+  firstname: String;
+  lastname: String;
+  address: String;
+  zip: Int;
+  country: String;
+  tel: String;
+  email: String;
+  password: String;
+  role: Json;
+  tokenActivate: String;
 }
 
-export interface IngredientPromise extends Promise<Ingredient>, Fragmentable {
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  quantity: () => Promise<Float>;
-  name: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
+  address: () => Promise<String>;
+  zip: () => Promise<Int>;
+  country: () => Promise<String>;
+  tel: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  role: () => Promise<Json>;
+  tokenActivate: () => Promise<String>;
 }
 
-export interface IngredientSubscription
-  extends Promise<AsyncIterator<Ingredient>>,
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  quantity: () => Promise<AsyncIterator<Float>>;
-  name: () => Promise<AsyncIterator<String>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
+  country: () => Promise<AsyncIterator<String>>;
+  tel: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<Json>>;
+  tokenActivate: () => Promise<AsyncIterator<String>>;
 }
-
-export interface IngredientNullablePromise
-  extends Promise<Ingredient | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  quantity: () => Promise<Float>;
-  name: () => Promise<String>;
-}
-
-export interface Order {
-  id: ID_Output;
-  price: Float;
-  date: DateTimeOutput;
-  status: Float;
-  pizza: Json;
-  dessert: Json;
-  drink: Json;
-}
-
-export interface OrderPromise extends Promise<Order>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  date: () => Promise<DateTimeOutput>;
-  status: () => Promise<Float>;
-  user: <T = UserPromise>() => T;
-  pizza: () => Promise<Json>;
-  dessert: () => Promise<Json>;
-  drink: () => Promise<Json>;
-}
-
-export interface OrderSubscription
-  extends Promise<AsyncIterator<Order>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  date: () => Promise<AsyncIterator<DateTimeOutput>>;
-  status: () => Promise<AsyncIterator<Float>>;
-  user: <T = UserSubscription>() => T;
-  pizza: () => Promise<AsyncIterator<Json>>;
-  dessert: () => Promise<AsyncIterator<Json>>;
-  drink: () => Promise<AsyncIterator<Json>>;
-}
-
-export interface OrderNullablePromise
-  extends Promise<Order | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  date: () => Promise<DateTimeOutput>;
-  status: () => Promise<Float>;
-  user: <T = UserPromise>() => T;
-  pizza: () => Promise<Json>;
-  dessert: () => Promise<Json>;
-  drink: () => Promise<Json>;
-}
-
-export interface OrderConnection {
-  pageInfo: PageInfo;
-  edges: OrderEdge[];
-}
-
-export interface OrderConnectionPromise
-  extends Promise<OrderConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<OrderEdge>>() => T;
-  aggregate: <T = AggregateOrderPromise>() => T;
-}
-
-export interface OrderConnectionSubscription
-  extends Promise<AsyncIterator<OrderConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<OrderEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateOrderSubscription>() => T;
-}
-
-export interface PizzaConnection {
-  pageInfo: PageInfo;
-  edges: PizzaEdge[];
-}
-
-export interface PizzaConnectionPromise
-  extends Promise<PizzaConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PizzaEdge>>() => T;
-  aggregate: <T = AggregatePizzaPromise>() => T;
-}
-
-export interface PizzaConnectionSubscription
-  extends Promise<AsyncIterator<PizzaConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PizzaEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePizzaSubscription>() => T;
-}
-
-export type Long = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -2243,7 +2241,25 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number;
 export type ID_Output = string;
 
-export type Json = any;
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number;
 
 /*
 DateTime scalar input type, allowing Date
@@ -2255,25 +2271,9 @@ DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
 
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
-*/
-export type Float = number;
+export type Json = any;
 
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
+export type Long = string;
 
 /**
  * Model Metadata

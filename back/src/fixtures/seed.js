@@ -15,6 +15,12 @@ async function main() {
         },
         tokenActivate:'a'
     })
+
+    await prisma.createDrink({
+        price: 1.50,
+        name:'Coca-Cola',
+        oz: 2.5,
+    })
     /*
     await prisma.createOrder({
         price: 10.50,
