@@ -8,3 +8,14 @@ anonymeRouteDrink.route('/')
         const Drinks = await Drink.getAllDrink();
         res.json(Drinks);
     })
+
+anonymeRouteDrink.route('/add')
+    .post(async (req, res) => {
+        const param = {
+            price: req.body.price,
+            name: req.body.name,
+            oz: req.body.oz
+        };
+        const Drinks = await Drink.addDrink(param);
+        res.json(Drinks);
+    })
