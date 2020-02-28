@@ -14,17 +14,31 @@ services:
         databases:
             default:
                 connector: mysql
-                host: mysql
+                host: db
                 port: 3306
                 user: root
                 password: prisma
 
-  mysql:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=prisma
+    restart: always
+    ports:
+      - "9090:80"
+    depends_on:
+      - db
+
+  db:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: prisma
     volumes:
-      - mysql:/var/lib/mysql
+      - ./data:/var/lib/mysql
 volumes:
-  mysql: ~
+  data: ~
