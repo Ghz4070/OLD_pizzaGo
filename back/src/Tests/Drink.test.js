@@ -7,6 +7,7 @@ suite('Test controller Drink', async () => {
         let boolFalseTypeOf = false
 
         const structureOjectDrink = {
+            id: 'string',
             price: 'number',
             name: 'string',
             oz: 'number',
@@ -24,6 +25,8 @@ suite('Test controller Drink', async () => {
                     console.log(structureOjectDrink[i])
                 }
             }
+
+            console.log(result.result[0]);
 
             assert.equal(boolFalseStructure, false, 'error in structure object')
             assert.equal(boolFalseTypeOf, false, 'error in typeof object key')
