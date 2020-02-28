@@ -51,9 +51,9 @@ input CategoryCreateInput {
   name: String!
 }
 
-input CategoryCreateOneInput {
-  create: CategoryCreateInput
-  connect: CategoryWhereUniqueInput
+input CategoryCreateManyInput {
+  create: [CategoryCreateInput!]
+  connect: [CategoryWhereUniqueInput!]
 }
 
 type CategoryEdge {
@@ -71,6 +71,40 @@ enum CategoryOrderByInput {
 type CategoryPreviousValues {
   id: ID!
   name: String!
+}
+
+input CategoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
 }
 
 type CategorySubscriptionPayload {
@@ -99,20 +133,38 @@ input CategoryUpdateInput {
   name: String
 }
 
+input CategoryUpdateManyDataInput {
+  name: String
+}
+
+input CategoryUpdateManyInput {
+  create: [CategoryCreateInput!]
+  update: [CategoryUpdateWithWhereUniqueNestedInput!]
+  upsert: [CategoryUpsertWithWhereUniqueNestedInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
 input CategoryUpdateManyMutationInput {
   name: String
 }
 
-input CategoryUpdateOneInput {
-  create: CategoryCreateInput
-  update: CategoryUpdateDataInput
-  upsert: CategoryUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: CategoryWhereUniqueInput
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
 }
 
-input CategoryUpsertNestedInput {
+input CategoryUpdateWithWhereUniqueNestedInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateDataInput!
+}
+
+input CategoryUpsertWithWhereUniqueNestedInput {
+  where: CategoryWhereUniqueInput!
   update: CategoryUpdateDataInput!
   create: CategoryCreateInput!
 }
@@ -416,9 +468,9 @@ input IngredientCreateInput {
   name: String!
 }
 
-input IngredientCreateOneInput {
-  create: IngredientCreateInput
-  connect: IngredientWhereUniqueInput
+input IngredientCreateManyInput {
+  create: [IngredientCreateInput!]
+  connect: [IngredientWhereUniqueInput!]
 }
 
 type IngredientEdge {
@@ -442,6 +494,56 @@ type IngredientPreviousValues {
   price: Float!
   quantity: Float!
   name: String!
+}
+
+input IngredientScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  quantity: Float
+  quantity_not: Float
+  quantity_in: [Float!]
+  quantity_not_in: [Float!]
+  quantity_lt: Float
+  quantity_lte: Float
+  quantity_gt: Float
+  quantity_gte: Float
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [IngredientScalarWhereInput!]
+  OR: [IngredientScalarWhereInput!]
+  NOT: [IngredientScalarWhereInput!]
 }
 
 type IngredientSubscriptionPayload {
@@ -474,22 +576,42 @@ input IngredientUpdateInput {
   name: String
 }
 
+input IngredientUpdateManyDataInput {
+  price: Float
+  quantity: Float
+  name: String
+}
+
+input IngredientUpdateManyInput {
+  create: [IngredientCreateInput!]
+  update: [IngredientUpdateWithWhereUniqueNestedInput!]
+  upsert: [IngredientUpsertWithWhereUniqueNestedInput!]
+  delete: [IngredientWhereUniqueInput!]
+  connect: [IngredientWhereUniqueInput!]
+  set: [IngredientWhereUniqueInput!]
+  disconnect: [IngredientWhereUniqueInput!]
+  deleteMany: [IngredientScalarWhereInput!]
+  updateMany: [IngredientUpdateManyWithWhereNestedInput!]
+}
+
 input IngredientUpdateManyMutationInput {
   price: Float
   quantity: Float
   name: String
 }
 
-input IngredientUpdateOneInput {
-  create: IngredientCreateInput
-  update: IngredientUpdateDataInput
-  upsert: IngredientUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: IngredientWhereUniqueInput
+input IngredientUpdateManyWithWhereNestedInput {
+  where: IngredientScalarWhereInput!
+  data: IngredientUpdateManyDataInput!
 }
 
-input IngredientUpsertNestedInput {
+input IngredientUpdateWithWhereUniqueNestedInput {
+  where: IngredientWhereUniqueInput!
+  data: IngredientUpdateDataInput!
+}
+
+input IngredientUpsertWithWhereUniqueNestedInput {
+  where: IngredientWhereUniqueInput!
   update: IngredientUpdateDataInput!
   create: IngredientCreateInput!
 }
@@ -762,8 +884,8 @@ type Pizza {
   price: Float!
   size: String!
   composition: Json!
-  ingredient: Ingredient
-  category: Category
+  ingredient(where: IngredientWhereInput, orderBy: IngredientOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Ingredient!]
+  category(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
 }
 
 type PizzaConnection {
@@ -777,8 +899,8 @@ input PizzaCreateInput {
   price: Float!
   size: String!
   composition: Json!
-  ingredient: IngredientCreateOneInput
-  category: CategoryCreateOneInput
+  ingredient: IngredientCreateManyInput
+  category: CategoryCreateManyInput
 }
 
 type PizzaEdge {
@@ -826,8 +948,8 @@ input PizzaUpdateInput {
   price: Float
   size: String
   composition: Json
-  ingredient: IngredientUpdateOneInput
-  category: CategoryUpdateOneInput
+  ingredient: IngredientUpdateManyInput
+  category: CategoryUpdateManyInput
 }
 
 input PizzaUpdateManyMutationInput {
@@ -873,8 +995,12 @@ input PizzaWhereInput {
   size_not_starts_with: String
   size_ends_with: String
   size_not_ends_with: String
-  ingredient: IngredientWhereInput
-  category: CategoryWhereInput
+  ingredient_every: IngredientWhereInput
+  ingredient_some: IngredientWhereInput
+  ingredient_none: IngredientWhereInput
+  category_every: CategoryWhereInput
+  category_some: CategoryWhereInput
+  category_none: CategoryWhereInput
   AND: [PizzaWhereInput!]
   OR: [PizzaWhereInput!]
   NOT: [PizzaWhereInput!]
