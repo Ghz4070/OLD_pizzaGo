@@ -3,13 +3,13 @@ import Drink from '../Controllers/DrinkController';
 
 suite('Test controller Drink', async () => {
 
-    test('should delete a Drink', (done) => {
+    /* test('should delete a Drink', (done) => {
         let param = {
             id:""
         };
         let lengthArray = "";
         
-        /* Drink.getAllDrink()
+        Drink.getAllDrink()
         .then((result) => {
             lengthArray = result.result.length;
             console.log("lengthArray");
@@ -19,8 +19,7 @@ suite('Test controller Drink', async () => {
                 console.log(result.result.length)
                 done();
             })
-        }) */
-
+        })
 
         Drink.getAllDrink().then((resp1) => {
             lengthArray = resp1.result.length;
@@ -44,8 +43,7 @@ suite('Test controller Drink', async () => {
             console.log(err);
             done();
         })
-    })
-
+    }) */
 
     test('should get all Drinks', (done) => {      
         let boolFalseStructure = false;
