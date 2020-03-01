@@ -1,4 +1,4 @@
-import { allUsers, userById } from './../providers/UserInterface';
+import { allUsers, userById } from './../Providers/UserInterface';
 import { success, error } from '../returnFunc';
 
 class User {

@@ -19,3 +19,21 @@ anonymeRouteDrink.route('/add')
         const Drinks = await Drink.addDrink(param);
         res.json(Drinks);
     })
+
+anonymeRouteDrink.route('/delete')
+    .delete(async (req, res) => {
+        const param = {
+            id: req.body.id
+        };
+        const Drinks = await Drink.deleteDrink(param);
+        res.json(Drinks);
+})
+
+anonymeRouteDrink.route('/:id')
+    .get(async (req, res) => {
+        const param = {
+            id: req.params.id
+        }
+        const Drinks = await Drink.getDrinkById(param);
+        res.json(Drinks);
+})

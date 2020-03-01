@@ -1,4 +1,4 @@
-const {prisma} = require('../providers/generated/prisma-client');
+const {prisma} = require('../Providers/generated/prisma-client');
 
 async function pizzaFixture() {
 
