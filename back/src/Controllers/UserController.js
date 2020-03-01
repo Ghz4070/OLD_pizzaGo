@@ -1,4 +1,4 @@
-import { prisma } from '../providers/generated/prisma-client';
+import { prisma } from '../Providers/generated/prisma-client';
 import { success, error } from '../returnFunc';
 
 class UserController {

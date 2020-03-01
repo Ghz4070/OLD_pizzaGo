@@ -1,5 +1,5 @@
 import { assert }from 'chai';
-import { allUsers, userById, addUser } from './../providers/UserInterface';
+import { allUsers, userById, addUser } from './../Providers/UserInterface';
 
 
 suite('Method for user', () => {
