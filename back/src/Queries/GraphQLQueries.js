@@ -16,3 +16,26 @@ export const getPizzaCatIng = `
         }
     }
 `
+
+export const getPizzaByCat = (name) => {
+    return `
+        query {
+            pizzas(where: {category_every : {name : "${name}"}}) {
+                id
+                price
+                size
+                composition
+                ingredient {
+                    id
+                    price
+                    name
+                    quantity
+                }
+                category{ 
+                    id
+                    name
+                }
+            }
+        }
+    `
+} 
