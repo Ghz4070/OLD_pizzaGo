@@ -1,7 +1,25 @@
-import { prisma } from '../providers/generated/prisma-client';
+import { prisma } from '../Providers/generated/prisma-client';
 import { success, error } from '../returnFunc';
 
 class DrinkController {
+   async checkId(param) {
+        let check  = false;
+        await this.getDrinkById(param).then(resp => {
+             switch (resp.status) {
+                 case 'success':
+                     check = true;
+                 break;
+                 case 'error' :
+                     check = false;
+                 break;
+                 default :
+                 check = false;
+                 break;
+             }
+         });
+         return check;
+    }
+
     getAllDrink() {
         return new Promise(async (next) => {
             const Drinks = await prisma.drinks()
@@ -36,17 +54,7 @@ class DrinkController {
     }
 
    async deleteDrink(param) {
-        var check;
-       await this.getDrinkById(param).then(resp => {
-            switch (resp.status) {
-                case 'success':
-                    check = true;
-                break;
-                case 'error':
-                    check = false;
-                break;
-            }
-        });
+        let check = this.checkId(param);
 
         return new Promise(async (next) => {
             if (await check) {
