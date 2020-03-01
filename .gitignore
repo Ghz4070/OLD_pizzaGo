@@ -4,5 +4,6 @@ yarn-error.log
 .idea
 tmp-resolvers
 package-lock.json
+data
 
 #le bon fichier

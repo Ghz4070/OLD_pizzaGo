@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import User from '../Controllers/UserController';
 
-suite('Test controller User', async () => {
+suite('Test controller User', () => {
     test('should get all Users', (done) => {      
         let boolFalseStructure = false;
         let boolFalseTypeOf = false
@@ -21,13 +21,13 @@ suite('Test controller User', async () => {
         }
         
         User.getAllUser()
-        .then((result) => {
+        .then((users) => {
             const keyStructure = Object.keys(structureOjectUser);
-            for(const i in result.result[0]){
+            for(const i in users.result[0]){
                 if(keyStructure.indexOf(i) === -1){
                     boolFalseStructure = true;
                 }
-                if(typeof(result.result[0][i]) !== structureOjectUser[i]){
+                if(typeof(users.result[0][i]) !== structureOjectUser[i]){
                     boolFalseTypeOf = true;   
                     console.log(structureOjectUser[i])
                 }
@@ -35,7 +35,7 @@ suite('Test controller User', async () => {
 
             assert.equal(boolFalseStructure, false, 'error in structure object')
             assert.equal(boolFalseTypeOf, false, 'error in typeof object key')
-            assert.typeOf(result,'object', 'must be an object')
+            assert.typeOf(users,'object', 'must be an object')
             
             done();
         })
