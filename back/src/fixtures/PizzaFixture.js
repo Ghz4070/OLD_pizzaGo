@@ -11,12 +11,12 @@ async function pizzaFixture() {
         },
         ingredient: {
             connect: {
-                id: 'ck760vm5l00360764os4zuj1t'
+                id: 'ck79bqj4j001e0739t1cc1uwj'
             }
         },
         category: {
             connect: {
-                id: 'ck760vp5u003g0764x772znhz'
+                id: 'ck79bqmim001o0739bbrrltba'
             }
         }
     })
@@ -31,12 +31,12 @@ async function pizzaFixture() {
         },
         ingredient: {
             connect: {
-                id: 'ck760vm6c003b07643cu47g29'
+                id: 'ck79bqj5g001j0739verzunk9'
             }
         },
         category: {
             connect: {
-                id: 'ck760vp6l003l0764tg2hrlu6'
+                id: 'ck79bqmjd001t07396lyh6cj0'
             }
         }
     })
