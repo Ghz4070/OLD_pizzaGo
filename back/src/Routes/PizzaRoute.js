@@ -8,3 +8,13 @@ anonymeRoutePizza.route('/')
         const Pizzas = await PizzaController.getAllPizza();
         res.json(Pizzas);
     })
+anonymeRoutePizza.route('/:id')
+    .get(async (req, res) => {
+        const Pizza = await PizzaController.getPizzaById(req.params.id);
+        res.json(Pizza);
+    })
+anonymeRoutePizza.route('/category/:cat')
+    .get(async (req, res) => {
+        const Pizza = await PizzaController.getPizzaByCat(req.params.cat);
+        res.json(Pizza);
+    })
