@@ -18,3 +18,30 @@ anonymeRoutePizza.route('/category/:cat')
         const Pizza = await PizzaController.getPizzaByCat(req.params.cat);
         res.json(Pizza);
     })
+anonymeRoutePizza.route('/add')
+    .post(async (req, res) => {
+        const pizza = {
+            price: req.params.price,
+            size: req.params.size,
+            composition: {
+                sauce : req.params.sauce,
+                cheese: false 
+            },
+            ingredient: {
+                connect: {
+                    id: 'ck79bqj5g001j0739verzunk9'
+                }
+            },
+            category: {
+                connect: {
+                    id: 'ck79bqmjd001t07396lyh6cj0'
+                }
+            }
+        }
+    })
+anonymeRoutePizza.route('/delete/:id')
+    .delete(async (req, res) => {
+        const pizzaParam = {id : req.params.id};
+        const deletePizza = await PizzaController.deletePizzaById(pizzaParam);
+        res.json(deletePizza) ;
+    })
