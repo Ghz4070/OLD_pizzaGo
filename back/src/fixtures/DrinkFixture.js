@@ -1,22 +1,21 @@
 const { prisma } = require('../providers/generated/prisma-client');
 
-function ingredientFixture() {
-    prisma.createIngredient({
-        price: 3,
-        quantity: 300,
-        name: 'viande haché'
+function categoryFixture() {
+    prisma.createDrink({
+        price: 2.50,
+        name: 'RedBull',
+        oz: 2.5,
     })
         .then(() => console.log('added'))
         .catch((err) => console.log(err.message))
-    
-    prisma.createIngredient({
-        price: 2,
-        quantity: 100,
-        name: 'thon'
-    })
 
+    prisma.createDrink({
+        price: 1.50,
+        name: 'Coca-Cola',
+        oz: 2.5,
+    })
         .then(() => console.log('added'))
         .catch((err) => console.log(err.message))
 }
 
-ingredientFixture();
+categoryFixture();

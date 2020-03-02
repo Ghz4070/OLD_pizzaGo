@@ -1,17 +1,19 @@
-const {prisma} = require('../providers/generated/prisma-client');
+const { prisma } = require('../providers/generated/prisma-client');
 
-async function pizzaFixture() {
+function pizzaFixture() {
 
-    await prisma.createPizza({
-        price: 20.09,
+    prisma.createPizza({
+        price: 20.99,
         size: 'L',
         composition: {
-            sauce : 'tomato',
-            cheese: true 
+            sauce: 'tomato',
+            cheese: true
         },
         ingredient: {
             connect: {
-                id: 'ck760vm5l00360764os4zuj1t'
+                id: prisma.ingredient({
+                    
+                })
             }
         },
         category: {
@@ -20,14 +22,15 @@ async function pizzaFixture() {
             }
         }
     })
+        .then(() => console.log('added'))
+        .catch((err) => console.log(err.message))
 
-
-    await prisma.createPizza({
+    prisma.createPizza({
         price: 40.39,
         size: 'XL',
         composition: {
-            sauce : 'tomato',
-            cheese: false 
+            sauce: 'tomato',
+            cheese: false
         },
         ingredient: {
             connect: {
@@ -40,5 +43,8 @@ async function pizzaFixture() {
             }
         }
     })
+        .then(() => console.log('added'))
+        .catch((err) => console.log(err.message))
 }
-pizzaFixture().catch(e => console.error(e));
+
+pizzaFixture();

@@ -1,13 +1,17 @@
-const {prisma} = require('../providers/generated/prisma-client');
+const { prisma } = require('../providers/generated/prisma-client');
 
-async function categoryFixture() {
-    await prisma.createCategory({
-       name: 'Première classe'
+function categoryFixture() {
+    prisma.createCategory({
+        name: 'Première classe'
     })
-
-
-    await prisma.createCategory({
+        .then(() => console.log('added'))
+        .catch((err) => console.log(err.message))
+    
+    prisma.createCategory({
         name: 'Deuxième classe'
     })
+        .then(() => console.log('added'))
+        .catch((err) => console.log(err.message))
 }
-categoryFixture().catch(e => console.error(e));
+
+categoryFixture();
