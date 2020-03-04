@@ -32,12 +32,7 @@ anonymeRouteDrink.route('/delete/:id')
 anonymeRouteDrink.route('/:id')
     .get(async (req, res) => {
         const param = {
-            data: {
-                price: req.body.price,
-                name: req.body.name,
-                oz: req.body.oz,
-            },
-            id: req.body.id
+            id: req.params.id
         }
         const Drinks = await Drink.getDrinkById(param);
         res.json(Drinks);
