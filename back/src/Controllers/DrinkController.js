@@ -66,6 +66,17 @@ class DrinkController {
             }
         });
     }
+
+    async updateDrink(param) {
+        return new Promise(async (next) => {
+            if (param.where.id && param.data.name && param.data.oz && param.data.price) {
+                const Drinks = await prisma.updateDrink(param);
+                next(success(Drinks));
+            } else {
+                next(success('Empty fields. Please check all fields.'));
+            }
+        });
+    }
 }
 
 export default new DrinkController();

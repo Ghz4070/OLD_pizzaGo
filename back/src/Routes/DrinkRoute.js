@@ -20,20 +20,39 @@ anonymeRouteDrink.route('/add')
         res.json(Drinks);
     })
 
-anonymeRouteDrink.route('/delete')
+anonymeRouteDrink.route('/delete/:id')
     .delete(async (req, res) => {
         const param = {
-            id: req.body.id
+            id: req.params.id
         };
         const Drinks = await Drink.deleteDrink(param);
         res.json(Drinks);
-})
+    })
 
 anonymeRouteDrink.route('/:id')
     .get(async (req, res) => {
         const param = {
-            id: req.params.id
+            data: {
+                price: req.body.price,
+                name: req.body.name,
+                oz: req.body.oz,
+            },
+            id: req.body.id
         }
         const Drinks = await Drink.getDrinkById(param);
         res.json(Drinks);
-})
+    })
+
+anonymeRouteDrink.route('/update')
+    .put(async (req, res) => {
+        const param = {
+            where: { id: req.body.id },
+            data: {
+                price: req.body.price,
+                name: req.body.name,
+                oz: req.body.oz
+            }
+        }
+        const Drinks = await Drink.updateDrink(param);
+        res.json(Drinks);
+    })
