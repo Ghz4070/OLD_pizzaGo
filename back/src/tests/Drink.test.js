@@ -3,47 +3,34 @@ import Drink from '../Controllers/DrinkController';
 
 suite('Test controller Drink', async () => {
 
-    /* test('should delete a Drink', (done) => {
+    test('should delete a Drink', (done) => {
         let param = {
-            id:""
+            id: ""
         };
-        let lengthArray = "";
-        
+        let lengthBefore = "";
+        let lengthAfter = "";
+        let boolIsDeleted = false;
+
         Drink.getAllDrink()
-        .then((result) => {
-            lengthArray = result.result.length;
-            console.log("lengthArray");
-            console.log(lengthArray);
-            param.id = result.result[0].id;
-            Drink.deleteDrink(param).then(resp => {
-                console.log(result.result.length)
-                done();
+            .then(result => {
+                lengthBefore = result.result.length;
+                param.id = result.result[0].id;
             })
-        })
-
-        Drink.getAllDrink().then((resp1) => {
-            lengthArray = resp1.result.length;
-            console.log(lengthArray);
-            param.id = resp1.result[0].id;
-        }).then((resp1) => {
-            Drink.deleteDrink(param)
-            
-        }).then((resp1) => {
-            Drink.getAllDrink();
-            console.log(resp1);
-        });
-
-        Drink.getAllDrink()
-        .then((result) => {
-            console.log("second");
-            console.log(result.result.length);
+            .then(newResult =>
+                Drink.deleteDrink(param).then(resp => {
+                })
+            )
+            .then(finalResult =>
+                Drink.getAllDrink().then(result3 => { 
+                    lengthAfter = result3.result.length;
+                    if(lengthAfter < lengthBefore) {
+                        boolIsDeleted = true;
+                    };
+                })   
+            )
+            assert.equal(boolIsDeleted, false, 'error file not deleted');
             done();
-        })
-        .catch((err) => {
-            console.log(err);
-            done();
-        })
-    }) */
+    })
 
     test('should get all Drinks', (done) => {      
         let boolFalseStructure = false;
@@ -111,6 +98,4 @@ suite('Test controller Drink', async () => {
             done();
         })
     })
-
-    
 })
