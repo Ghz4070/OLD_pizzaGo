@@ -1055,8 +1055,9 @@ type User {
   tel: String!
   email: String!
   password: String!
-  role: Json!
-  tokenActivate: String!
+  role: [String!]!
+  tokenActivate: String
+  tokenResetPassword: String
 }
 
 type UserConnection {
@@ -1075,13 +1076,18 @@ input UserCreateInput {
   tel: String!
   email: String!
   password: String!
-  role: Json!
-  tokenActivate: String!
+  role: UserCreateroleInput
+  tokenActivate: String
+  tokenResetPassword: String
 }
 
 input UserCreateOneInput {
   create: UserCreateInput
   connect: UserWhereUniqueInput
+}
+
+input UserCreateroleInput {
+  set: [String!]
 }
 
 type UserEdge {
@@ -1108,10 +1114,10 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
-  role_ASC
-  role_DESC
   tokenActivate_ASC
   tokenActivate_DESC
+  tokenResetPassword_ASC
+  tokenResetPassword_DESC
 }
 
 type UserPreviousValues {
@@ -1124,8 +1130,9 @@ type UserPreviousValues {
   tel: String!
   email: String!
   password: String!
-  role: Json!
-  tokenActivate: String!
+  role: [String!]!
+  tokenActivate: String
+  tokenResetPassword: String
 }
 
 type UserSubscriptionPayload {
@@ -1155,8 +1162,9 @@ input UserUpdateDataInput {
   tel: String
   email: String
   password: String
-  role: Json
+  role: UserUpdateroleInput
   tokenActivate: String
+  tokenResetPassword: String
 }
 
 input UserUpdateInput {
@@ -1168,8 +1176,9 @@ input UserUpdateInput {
   tel: String
   email: String
   password: String
-  role: Json
+  role: UserUpdateroleInput
   tokenActivate: String
+  tokenResetPassword: String
 }
 
 input UserUpdateManyMutationInput {
@@ -1181,8 +1190,9 @@ input UserUpdateManyMutationInput {
   tel: String
   email: String
   password: String
-  role: Json
+  role: UserUpdateroleInput
   tokenActivate: String
+  tokenResetPassword: String
 }
 
 input UserUpdateOneInput {
@@ -1192,6 +1202,10 @@ input UserUpdateOneInput {
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
+}
+
+input UserUpdateroleInput {
+  set: [String!]
 }
 
 input UserUpsertNestedInput {
@@ -1334,6 +1348,20 @@ input UserWhereInput {
   tokenActivate_not_starts_with: String
   tokenActivate_ends_with: String
   tokenActivate_not_ends_with: String
+  tokenResetPassword: String
+  tokenResetPassword_not: String
+  tokenResetPassword_in: [String!]
+  tokenResetPassword_not_in: [String!]
+  tokenResetPassword_lt: String
+  tokenResetPassword_lte: String
+  tokenResetPassword_gt: String
+  tokenResetPassword_gte: String
+  tokenResetPassword_contains: String
+  tokenResetPassword_not_contains: String
+  tokenResetPassword_starts_with: String
+  tokenResetPassword_not_starts_with: String
+  tokenResetPassword_ends_with: String
+  tokenResetPassword_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -39,3 +39,13 @@ export const getPizzaByCat = (name) => {
         }
     `
 } 
+
+export const getOnlyMailUser = (email) => {
+    return `
+        query {
+            users(where : {email : "${email}"}){
+                email
+            }
+        }
+    `
+}

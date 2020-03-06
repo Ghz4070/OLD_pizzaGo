@@ -10,17 +10,11 @@ async function main() {
         tel: '0622411970',
         email: 'paiva.raphaelt@gmail.com',
         password:'Azerty99-',
-        role:{
-            role: 'user'
-        },
-        tokenActivate:'a'
+        tokenActivate:'a',
+        role:{set: ["USER", "ADMIN"]}
     })
 
-    await prisma.createDrink({
-        price: 1.50,
-        name:'Coca-Cola',
-        oz: 2.5,
-    })
+
     /*
     await prisma.createOrder({
         price: 10.50,
