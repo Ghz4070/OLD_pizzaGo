@@ -2,6 +2,7 @@ import express from 'express';
 import PizzaController from '../Controllers/PizzaController';
 
 export const anonymeRoutePizza = express.Router();
+export const adminRoutePizza = express.Router();
 
 anonymeRoutePizza.route('/')
     .get(async (req, res) => {
@@ -18,6 +19,7 @@ anonymeRoutePizza.route('/category/:cat')
         const Pizza = await PizzaController.getPizzaByCat(req.params.cat);
         res.json(Pizza);
     })
+/*
 anonymeRoutePizza.route('/add')
     .post(async (req, res) => {
         const pizza = {
@@ -38,8 +40,8 @@ anonymeRoutePizza.route('/add')
                 }
             }
         }
-    })
-anonymeRoutePizza.route('/delete/:id')
+    })*/
+adminRoutePizza.route('/delete/:id')
     .delete(async (req, res) => {
         const pizzaParam = {id : req.params.id};
         const deletePizza = await PizzaController.deletePizzaById(pizzaParam);

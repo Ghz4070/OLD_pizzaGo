@@ -8,6 +8,7 @@ type User {
     tel: String!
     email: String!
     password: String!
-    role: Json!
-    tokenActivate: String!
+    role: [String!]! @scalarList(strategy: RELATION)
+    tokenActivate: String
+    tokenResetPassword: String
 }

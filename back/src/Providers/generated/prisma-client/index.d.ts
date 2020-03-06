@@ -416,37 +416,20 @@ export type UserOrderByInput =
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
-  | "role_ASC"
-  | "role_DESC"
   | "tokenActivate_ASC"
-  | "tokenActivate_DESC";
+  | "tokenActivate_DESC"
+  | "tokenResetPassword_ASC"
+  | "tokenResetPassword_DESC";
 
-export interface IngredientUpdateDataInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
+export interface IngredientUpdateWithWhereUniqueNestedInput {
+  where: IngredientWhereUniqueInput;
+  data: IngredientUpdateDataInput;
 }
 
-export interface IngredientUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
+export interface UserCreateOneInput {
+  create?: Maybe<UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
 }
-
-export interface OrderSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<OrderWhereInput>;
-  AND?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-  OR?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-  NOT?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
-}
-
-export type CategoryWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface PizzaUpdateInput {
   price?: Maybe<Float>;
@@ -454,6 +437,15 @@ export interface PizzaUpdateInput {
   composition?: Maybe<Json>;
   ingredient?: Maybe<IngredientUpdateManyInput>;
   category?: Maybe<CategoryUpdateManyInput>;
+}
+
+export type CategoryWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface CategoryCreateManyInput {
+  create?: Maybe<CategoryCreateInput[] | CategoryCreateInput>;
+  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
 }
 
 export interface CategorySubscriptionWhereInput {
@@ -471,9 +463,9 @@ export interface CategorySubscriptionWhereInput {
   >;
 }
 
-export interface CategoryCreateManyInput {
-  create?: Maybe<CategoryCreateInput[] | CategoryCreateInput>;
-  connect?: Maybe<CategoryWhereUniqueInput[] | CategoryWhereUniqueInput>;
+export interface IngredientCreateManyInput {
+  create?: Maybe<IngredientCreateInput[] | IngredientCreateInput>;
+  connect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -485,14 +477,14 @@ export interface UserUpdateManyMutationInput {
   tel?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
-  role?: Maybe<Json>;
+  role?: Maybe<UserUpdateroleInput>;
   tokenActivate?: Maybe<String>;
+  tokenResetPassword?: Maybe<String>;
 }
 
-export interface IngredientCreateManyInput {
-  create?: Maybe<IngredientCreateInput[] | IngredientCreateInput>;
-  connect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
-}
+export type PizzaWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface DessertWhereInput {
   id?: Maybe<ID_Input>;
@@ -536,16 +528,6 @@ export interface DessertWhereInput {
   NOT?: Maybe<DessertWhereInput[] | DessertWhereInput>;
 }
 
-export type PizzaWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PizzaUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  size?: Maybe<String>;
-  composition?: Maybe<Json>;
-}
-
 export interface PizzaCreateInput {
   id?: Maybe<ID_Input>;
   price: Float;
@@ -555,9 +537,10 @@ export interface PizzaCreateInput {
   category?: Maybe<CategoryCreateManyInput>;
 }
 
-export interface CategoryUpdateManyWithWhereNestedInput {
-  where: CategoryScalarWhereInput;
-  data: CategoryUpdateManyDataInput;
+export interface PizzaUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  size?: Maybe<String>;
+  composition?: Maybe<Json>;
 }
 
 export interface PizzaWhereInput {
@@ -608,38 +591,9 @@ export interface PizzaWhereInput {
   NOT?: Maybe<PizzaWhereInput[] | PizzaWhereInput>;
 }
 
-export interface CategoryScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
-  OR?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
-  NOT?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+export interface CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput;
+  data: CategoryUpdateManyDataInput;
 }
 
 export interface CategoryWhereInput {
@@ -676,6 +630,48 @@ export interface CategoryWhereInput {
   NOT?: Maybe<CategoryWhereInput[] | CategoryWhereInput>;
 }
 
+export interface CategoryScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  OR?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+  NOT?: Maybe<CategoryScalarWhereInput[] | CategoryScalarWhereInput>;
+}
+
+export interface OrderUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  status?: Maybe<Float>;
+  pizza?: Maybe<Json>;
+  dessert?: Maybe<Json>;
+  drink?: Maybe<Json>;
+}
+
 export interface DrinkSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -687,39 +683,26 @@ export interface DrinkSubscriptionWhereInput {
   NOT?: Maybe<DrinkSubscriptionWhereInput[] | DrinkSubscriptionWhereInput>;
 }
 
-export interface OrderUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  status?: Maybe<Float>;
-  pizza?: Maybe<Json>;
-  dessert?: Maybe<Json>;
-  drink?: Maybe<Json>;
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
 }
 
 export interface CategoryUpdateDataInput {
   name?: Maybe<String>;
 }
 
-export interface UserUpsertNestedInput {
-  update: UserUpdateDataInput;
-  create: UserCreateInput;
+export interface UserUpdateroleInput {
+  set?: Maybe<String[] | String>;
 }
 
 export type IngredientWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface UserUpdateDataInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  address?: Maybe<String>;
-  zip?: Maybe<Int>;
-  country?: Maybe<String>;
-  tel?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  role?: Maybe<Json>;
-  tokenActivate?: Maybe<String>;
-}
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
 
 export interface IngredientWhereInput {
   id?: Maybe<ID_Input>;
@@ -771,16 +754,6 @@ export interface IngredientWhereInput {
   NOT?: Maybe<IngredientWhereInput[] | IngredientWhereInput>;
 }
 
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface IngredientUpdateManyDataInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
-}
-
 export interface PizzaSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -790,6 +763,26 @@ export interface PizzaSubscriptionWhereInput {
   AND?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
   OR?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
   NOT?: Maybe<PizzaSubscriptionWhereInput[] | PizzaSubscriptionWhereInput>;
+}
+
+export interface IngredientUpdateManyDataInput {
+  price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  name?: Maybe<String>;
+}
+
+export interface UserUpdateDataInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  address?: Maybe<String>;
+  zip?: Maybe<Int>;
+  country?: Maybe<String>;
+  tel?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<UserUpdateroleInput>;
+  tokenActivate?: Maybe<String>;
+  tokenResetPassword?: Maybe<String>;
 }
 
 export interface IngredientScalarWhereInput {
@@ -866,23 +859,15 @@ export interface OrderUpdateInput {
   drink?: Maybe<Json>;
 }
 
-export interface IngredientUpdateWithWhereUniqueNestedInput {
-  where: IngredientWhereUniqueInput;
-  data: IngredientUpdateDataInput;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstname: String;
-  lastname: String;
-  address: String;
-  zip: Int;
-  country: String;
-  tel: String;
-  email: String;
-  password: String;
-  role: Json;
-  tokenActivate: String;
+export interface UserSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<UserWhereInput>;
+  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
 export interface OrderWhereInput {
@@ -930,19 +915,15 @@ export interface OrderWhereInput {
   NOT?: Maybe<OrderWhereInput[] | OrderWhereInput>;
 }
 
-export type DessertWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface DessertSubscriptionWhereInput {
+export interface OrderSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<DessertWhereInput>;
-  AND?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
-  OR?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
-  NOT?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+  node?: Maybe<OrderWhereInput>;
+  AND?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
+  OR?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
+  NOT?: Maybe<OrderSubscriptionWhereInput[] | OrderSubscriptionWhereInput>;
 }
 
 export interface CategoryCreateInput {
@@ -950,22 +931,183 @@ export interface CategoryCreateInput {
   name: String;
 }
 
-export type DrinkWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
+export interface UserUpdateInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  address?: Maybe<String>;
+  zip?: Maybe<Int>;
+  country?: Maybe<String>;
+  tel?: Maybe<String>;
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  role?: Maybe<UserUpdateroleInput>;
+  tokenActivate?: Maybe<String>;
+  tokenResetPassword?: Maybe<String>;
+}
 
 export interface CategoryUpdateInput {
   name?: Maybe<String>;
 }
 
-export interface CategoryUpsertWithWhereUniqueNestedInput {
-  where: CategoryWhereUniqueInput;
-  update: CategoryUpdateDataInput;
-  create: CategoryCreateInput;
+export interface CategoryUpdateManyDataInput {
+  name?: Maybe<String>;
 }
 
 export interface CategoryUpdateManyMutationInput {
   name?: Maybe<String>;
+}
+
+export interface DrinkWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  price?: Maybe<Float>;
+  price_not?: Maybe<Float>;
+  price_in?: Maybe<Float[] | Float>;
+  price_not_in?: Maybe<Float[] | Float>;
+  price_lt?: Maybe<Float>;
+  price_lte?: Maybe<Float>;
+  price_gt?: Maybe<Float>;
+  price_gte?: Maybe<Float>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  oz?: Maybe<Float>;
+  oz_not?: Maybe<Float>;
+  oz_in?: Maybe<Float[] | Float>;
+  oz_not_in?: Maybe<Float[] | Float>;
+  oz_lt?: Maybe<Float>;
+  oz_lte?: Maybe<Float>;
+  oz_gt?: Maybe<Float>;
+  oz_gte?: Maybe<Float>;
+  AND?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+  OR?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+  NOT?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
+}
+
+export interface UserCreateroleInput {
+  set?: Maybe<String[] | String>;
+}
+
+export interface CategoryUpdateWithWhereUniqueNestedInput {
+  where: CategoryWhereUniqueInput;
+  data: CategoryUpdateDataInput;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstname: String;
+  lastname: String;
+  address: String;
+  zip: Int;
+  country: String;
+  tel: String;
+  email: String;
+  password: String;
+  role?: Maybe<UserCreateroleInput>;
+  tokenActivate?: Maybe<String>;
+  tokenResetPassword?: Maybe<String>;
+}
+
+export interface IngredientSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<IngredientWhereInput>;
+  AND?: Maybe<
+    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
+  >;
+}
+
+export interface DessertCreateInput {
+  id?: Maybe<ID_Input>;
+  price: Float;
+  name: String;
+}
+
+export type OrderWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DessertUpdateInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+}
+
+export interface IngredientUpdateManyInput {
+  create?: Maybe<IngredientCreateInput[] | IngredientCreateInput>;
+  update?: Maybe<
+    | IngredientUpdateWithWhereUniqueNestedInput[]
+    | IngredientUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | IngredientUpsertWithWhereUniqueNestedInput[]
+    | IngredientUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
+  connect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
+  set?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
+  disconnect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
+  deleteMany?: Maybe<IngredientScalarWhereInput[] | IngredientScalarWhereInput>;
+  updateMany?: Maybe<
+    | IngredientUpdateManyWithWhereNestedInput[]
+    | IngredientUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface DessertUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+}
+
+export type DessertWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DrinkCreateInput {
+  id?: Maybe<ID_Input>;
+  price: Float;
+  name: String;
+  oz: Float;
+}
+
+export type DrinkWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface DrinkUpdateInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+  oz?: Maybe<Float>;
 }
 
 export interface CategoryUpdateManyInput {
@@ -989,14 +1131,16 @@ export interface CategoryUpdateManyInput {
   >;
 }
 
-export interface UserCreateOneInput {
-  create?: Maybe<UserCreateInput>;
-  connect?: Maybe<UserWhereUniqueInput>;
+export interface DrinkUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  name?: Maybe<String>;
+  oz?: Maybe<Float>;
 }
 
-export interface IngredientUpdateManyWithWhereNestedInput {
-  where: IngredientScalarWhereInput;
-  data: IngredientUpdateManyDataInput;
+export interface IngredientUpdateDataInput {
+  price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  name?: Maybe<String>;
 }
 
 export interface OrderCreateInput {
@@ -1009,20 +1153,22 @@ export interface OrderCreateInput {
   drink: Json;
 }
 
-export interface UserSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<UserWhereInput>;
-  AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
-  NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+export interface IngredientUpdateManyMutationInput {
+  price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  name?: Maybe<String>;
 }
 
-export interface DessertCreateInput {
+export interface IngredientUpdateInput {
+  price?: Maybe<Float>;
+  quantity?: Maybe<Float>;
+  name?: Maybe<String>;
+}
+
+export interface IngredientCreateInput {
   id?: Maybe<ID_Input>;
   price: Float;
+  quantity: Float;
   name: String;
 }
 
@@ -1161,202 +1307,49 @@ export interface UserWhereInput {
   tokenActivate_not_starts_with?: Maybe<String>;
   tokenActivate_ends_with?: Maybe<String>;
   tokenActivate_not_ends_with?: Maybe<String>;
+  tokenResetPassword?: Maybe<String>;
+  tokenResetPassword_not?: Maybe<String>;
+  tokenResetPassword_in?: Maybe<String[] | String>;
+  tokenResetPassword_not_in?: Maybe<String[] | String>;
+  tokenResetPassword_lt?: Maybe<String>;
+  tokenResetPassword_lte?: Maybe<String>;
+  tokenResetPassword_gt?: Maybe<String>;
+  tokenResetPassword_gte?: Maybe<String>;
+  tokenResetPassword_contains?: Maybe<String>;
+  tokenResetPassword_not_contains?: Maybe<String>;
+  tokenResetPassword_starts_with?: Maybe<String>;
+  tokenResetPassword_not_starts_with?: Maybe<String>;
+  tokenResetPassword_ends_with?: Maybe<String>;
+  tokenResetPassword_not_ends_with?: Maybe<String>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface DessertUpdateInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
+export interface IngredientUpdateManyWithWhereNestedInput {
+  where: IngredientScalarWhereInput;
+  data: IngredientUpdateManyDataInput;
 }
 
-export interface CategoryUpdateManyDataInput {
-  name?: Maybe<String>;
-}
-
-export interface DessertUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
-}
-
-export interface CategoryUpdateWithWhereUniqueNestedInput {
+export interface CategoryUpsertWithWhereUniqueNestedInput {
   where: CategoryWhereUniqueInput;
-  data: CategoryUpdateDataInput;
+  update: CategoryUpdateDataInput;
+  create: CategoryCreateInput;
 }
 
-export interface DrinkCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  name: String;
-  oz: Float;
-}
-
-export type OrderWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface IngredientUpdateInput {
-  price?: Maybe<Float>;
-  quantity?: Maybe<Float>;
-  name?: Maybe<String>;
-}
-
-export interface IngredientCreateInput {
-  id?: Maybe<ID_Input>;
-  price: Float;
-  quantity: Float;
-  name: String;
-}
-
-export interface DrinkUpdateManyMutationInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
-  oz?: Maybe<Float>;
-}
-
-export interface DrinkUpdateInput {
-  price?: Maybe<Float>;
-  name?: Maybe<String>;
-  oz?: Maybe<Float>;
-}
-
-export interface IngredientUpdateManyInput {
-  create?: Maybe<IngredientCreateInput[] | IngredientCreateInput>;
-  update?: Maybe<
-    | IngredientUpdateWithWhereUniqueNestedInput[]
-    | IngredientUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | IngredientUpsertWithWhereUniqueNestedInput[]
-    | IngredientUpsertWithWhereUniqueNestedInput
-  >;
-  delete?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
-  connect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
-  set?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
-  disconnect?: Maybe<IngredientWhereUniqueInput[] | IngredientWhereUniqueInput>;
-  deleteMany?: Maybe<IngredientScalarWhereInput[] | IngredientScalarWhereInput>;
-  updateMany?: Maybe<
-    | IngredientUpdateManyWithWhereNestedInput[]
-    | IngredientUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface IngredientSubscriptionWhereInput {
+export interface DessertSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<IngredientWhereInput>;
-  AND?: Maybe<
-    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    IngredientSubscriptionWhereInput[] | IngredientSubscriptionWhereInput
-  >;
-}
-
-export interface DrinkWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  price?: Maybe<Float>;
-  price_not?: Maybe<Float>;
-  price_in?: Maybe<Float[] | Float>;
-  price_not_in?: Maybe<Float[] | Float>;
-  price_lt?: Maybe<Float>;
-  price_lte?: Maybe<Float>;
-  price_gt?: Maybe<Float>;
-  price_gte?: Maybe<Float>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  oz?: Maybe<Float>;
-  oz_not?: Maybe<Float>;
-  oz_in?: Maybe<Float[] | Float>;
-  oz_not_in?: Maybe<Float[] | Float>;
-  oz_lt?: Maybe<Float>;
-  oz_lte?: Maybe<Float>;
-  oz_gt?: Maybe<Float>;
-  oz_gte?: Maybe<Float>;
-  AND?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
-  OR?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
-  NOT?: Maybe<DrinkWhereInput[] | DrinkWhereInput>;
-}
-
-export interface UserUpdateInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  address?: Maybe<String>;
-  zip?: Maybe<Int>;
-  country?: Maybe<String>;
-  tel?: Maybe<String>;
-  email?: Maybe<String>;
-  password?: Maybe<String>;
-  role?: Maybe<Json>;
-  tokenActivate?: Maybe<String>;
+  node?: Maybe<DessertWhereInput>;
+  AND?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+  OR?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
+  NOT?: Maybe<DessertSubscriptionWhereInput[] | DessertSubscriptionWhereInput>;
 }
 
 export interface NodeNode {
   id: ID_Output;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface DessertEdge {
-  node: Dessert;
-  cursor: String;
-}
-
-export interface DessertEdgePromise extends Promise<DessertEdge>, Fragmentable {
-  node: <T = DessertPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface DessertEdgeSubscription
-  extends Promise<AsyncIterator<DessertEdge>>,
-    Fragmentable {
-  node: <T = DessertSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserPreviousValues {
@@ -1369,8 +1362,9 @@ export interface UserPreviousValues {
   tel: String;
   email: String;
   password: String;
-  role: Json;
-  tokenActivate: String;
+  role: String[];
+  tokenActivate?: String;
+  tokenResetPassword?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -1385,8 +1379,9 @@ export interface UserPreviousValuesPromise
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<Json>;
+  role: () => Promise<String[]>;
   tokenActivate: () => Promise<String>;
+  tokenResetPassword: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -1401,61 +1396,30 @@ export interface UserPreviousValuesSubscription
   tel: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<Json>>;
+  role: () => Promise<AsyncIterator<String[]>>;
   tokenActivate: () => Promise<AsyncIterator<String>>;
+  tokenResetPassword: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DessertConnection {
+export interface DrinkConnection {
   pageInfo: PageInfo;
-  edges: DessertEdge[];
+  edges: DrinkEdge[];
 }
 
-export interface DessertConnectionPromise
-  extends Promise<DessertConnection>,
+export interface DrinkConnectionPromise
+  extends Promise<DrinkConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DessertEdge>>() => T;
-  aggregate: <T = AggregateDessertPromise>() => T;
+  edges: <T = FragmentableArray<DrinkEdge>>() => T;
+  aggregate: <T = AggregateDrinkPromise>() => T;
 }
 
-export interface DessertConnectionSubscription
-  extends Promise<AsyncIterator<DessertConnection>>,
+export interface DrinkConnectionSubscription
+  extends Promise<AsyncIterator<DrinkConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DessertEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDessertSubscription>() => T;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface AggregateDessert {
-  count: Int;
-}
-
-export interface AggregateDessertPromise
-  extends Promise<AggregateDessert>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateDessertSubscription
-  extends Promise<AsyncIterator<AggregateDessert>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  edges: <T = Promise<AsyncIterator<DrinkEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDrinkSubscription>() => T;
 }
 
 export interface OrderSubscriptionPayload {
@@ -1483,50 +1447,69 @@ export interface OrderSubscriptionPayloadSubscription
   previousValues: <T = OrderPreviousValuesSubscription>() => T;
 }
 
-export interface PizzaPreviousValues {
+export interface Drink {
   id: ID_Output;
   price: Float;
-  size: String;
-  composition: Json;
+  name: String;
+  oz: Float;
 }
 
-export interface PizzaPreviousValuesPromise
-  extends Promise<PizzaPreviousValues>,
-    Fragmentable {
+export interface DrinkPromise extends Promise<Drink>, Fragmentable {
   id: () => Promise<ID_Output>;
   price: () => Promise<Float>;
-  size: () => Promise<String>;
-  composition: () => Promise<Json>;
+  name: () => Promise<String>;
+  oz: () => Promise<Float>;
 }
 
-export interface PizzaPreviousValuesSubscription
-  extends Promise<AsyncIterator<PizzaPreviousValues>>,
+export interface DrinkSubscription
+  extends Promise<AsyncIterator<Drink>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   price: () => Promise<AsyncIterator<Float>>;
-  size: () => Promise<AsyncIterator<String>>;
-  composition: () => Promise<AsyncIterator<Json>>;
+  name: () => Promise<AsyncIterator<String>>;
+  oz: () => Promise<AsyncIterator<Float>>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface DrinkNullablePromise
+  extends Promise<Drink | null>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  name: () => Promise<String>;
+  oz: () => Promise<Float>;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface DessertEdge {
+  node: Dessert;
+  cursor: String;
+}
+
+export interface DessertEdgePromise extends Promise<DessertEdge>, Fragmentable {
+  node: <T = DessertPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DessertEdgeSubscription
+  extends Promise<AsyncIterator<DessertEdge>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  node: <T = DessertSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateDessert {
+  count: Int;
+}
+
+export interface AggregateDessertPromise
+  extends Promise<AggregateDessert>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDessertSubscription
+  extends Promise<AsyncIterator<AggregateDessert>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface UserEdge {
@@ -1544,6 +1527,59 @@ export interface UserEdgeSubscription
     Fragmentable {
   node: <T = UserSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregatePizza {
+  count: Int;
+}
+
+export interface AggregatePizzaPromise
+  extends Promise<AggregatePizza>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePizzaSubscription
+  extends Promise<AsyncIterator<AggregatePizza>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DessertConnection {
+  pageInfo: PageInfo;
+  edges: DessertEdge[];
+}
+
+export interface DessertConnectionPromise
+  extends Promise<DessertConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DessertEdge>>() => T;
+  aggregate: <T = AggregateDessertPromise>() => T;
+}
+
+export interface DessertConnectionSubscription
+  extends Promise<AsyncIterator<DessertConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DessertEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDessertSubscription>() => T;
 }
 
 export interface PizzaConnection {
@@ -1567,20 +1603,29 @@ export interface PizzaConnectionSubscription
   aggregate: <T = AggregatePizzaSubscription>() => T;
 }
 
-export interface AggregatePizza {
-  count: Int;
+export interface PizzaPreviousValues {
+  id: ID_Output;
+  price: Float;
+  size: String;
+  composition: Json;
 }
 
-export interface AggregatePizzaPromise
-  extends Promise<AggregatePizza>,
+export interface PizzaPreviousValuesPromise
+  extends Promise<PizzaPreviousValues>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<ID_Output>;
+  price: () => Promise<Float>;
+  size: () => Promise<String>;
+  composition: () => Promise<Json>;
 }
 
-export interface AggregatePizzaSubscription
-  extends Promise<AsyncIterator<AggregatePizza>>,
+export interface PizzaPreviousValuesSubscription
+  extends Promise<AsyncIterator<PizzaPreviousValues>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  price: () => Promise<AsyncIterator<Float>>;
+  size: () => Promise<AsyncIterator<String>>;
+  composition: () => Promise<AsyncIterator<Json>>;
 }
 
 export interface AggregateOrder {
@@ -1674,8 +1719,9 @@ export interface User {
   tel: String;
   email: String;
   password: String;
-  role: Json;
-  tokenActivate: String;
+  role: String[];
+  tokenActivate?: String;
+  tokenResetPassword?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -1688,8 +1734,9 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<Json>;
+  role: () => Promise<String[]>;
   tokenActivate: () => Promise<String>;
+  tokenResetPassword: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -1704,8 +1751,9 @@ export interface UserSubscription
   tel: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<Json>>;
+  role: () => Promise<AsyncIterator<String[]>>;
   tokenActivate: () => Promise<AsyncIterator<String>>;
+  tokenResetPassword: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserNullablePromise
@@ -1720,8 +1768,9 @@ export interface UserNullablePromise
   tel: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
-  role: () => Promise<Json>;
+  role: () => Promise<String[]>;
   tokenActivate: () => Promise<String>;
+  tokenResetPassword: () => Promise<String>;
 }
 
 export interface CategoryEdge {
@@ -1952,36 +2001,25 @@ export interface DessertSubscriptionPayloadSubscription
   previousValues: <T = DessertPreviousValuesSubscription>() => T;
 }
 
-export interface Drink {
-  id: ID_Output;
-  price: Float;
-  name: String;
-  oz: Float;
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
 }
 
-export interface DrinkPromise extends Promise<Drink>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  name: () => Promise<String>;
-  oz: () => Promise<Float>;
-}
-
-export interface DrinkSubscription
-  extends Promise<AsyncIterator<Drink>>,
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  price: () => Promise<AsyncIterator<Float>>;
-  name: () => Promise<AsyncIterator<String>>;
-  oz: () => Promise<AsyncIterator<Float>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
 }
 
-export interface DrinkNullablePromise
-  extends Promise<Drink | null>,
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  price: () => Promise<Float>;
-  name: () => Promise<String>;
-  oz: () => Promise<Float>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface DessertPreviousValues {
@@ -2361,25 +2399,20 @@ export interface OrderEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface DrinkConnection {
-  pageInfo: PageInfo;
-  edges: DrinkEdge[];
+export interface AggregateUser {
+  count: Int;
 }
 
-export interface DrinkConnectionPromise
-  extends Promise<DrinkConnection>,
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<DrinkEdge>>() => T;
-  aggregate: <T = AggregateDrinkPromise>() => T;
+  count: () => Promise<Int>;
 }
 
-export interface DrinkConnectionSubscription
-  extends Promise<AsyncIterator<DrinkConnection>>,
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<DrinkEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateDrinkSubscription>() => T;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface IngredientConnection {
@@ -2427,12 +2460,13 @@ export interface CategoryNullablePromise
   name: () => Promise<String>;
 }
 
-/*
-The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
-*/
-export type Float = number;
-
 export type Long = string;
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
 
 export type Json = any;
 
@@ -2447,10 +2481,9 @@ DateTime scalar output type, which is always a string
 export type DateTimeOutput = string;
 
 /*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
 */
-export type ID_Input = string | number;
-export type ID_Output = string;
+export type Float = number;
 
 /*
 The `Boolean` scalar type represents `true` or `false`.

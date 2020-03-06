@@ -35,7 +35,7 @@ class PizzaController {
             }
         })
     }
-
+    /* a refaire
     createPizza(pizza){
         return new Promise(async (next) => {
             if(pizza.price && pizza.size && pizza.composition && pizza.ingredient && pizza.category) {
@@ -45,7 +45,7 @@ class PizzaController {
                 next(error('Empty fields'));
             }
         })
-    }
+    }*/
 
     async deletePizzaById(pizzaId){
         return new Promise(async (next) => {
