@@ -3,6 +3,45 @@ import Drink from '../Controllers/DrinkController';
 
 suite('Test controller Drink', async () => {
 
+    test('should get one Drink', (done) => {      
+        let boolFalseStructure = false;
+        let boolFalseTypeOf = false
+        let param = {id : ""};
+
+        const structureOjectDrink = {
+            id: 'string',
+            price: 'number',
+            name: 'string',
+            oz: 'number',
+        }
+        
+        Drink.getAllDrink()
+        .then((result) => {
+            param.id = result.result[0].id 
+        }).then(result2 => {
+            Drink.getDrinkById(param).then(resp => {
+                const keyStructure = Object.keys(structureOjectDrink);
+                for(const i in resp.result[0]){
+                    if(keyStructure.indexOf(i) === -1){
+                        boolFalseStructure = true;
+                    }
+                    if(typeof(resp.result[0][i]) !== structureOjectDrink[i]){
+                        boolFalseTypeOf = true;   
+                    }
+                }
+                assert.equal(boolFalseStructure, false, 'error in structure object')
+                assert.equal(boolFalseTypeOf, false, 'error in typeof object key')
+                assert.typeOf(resp,'object', 'must be an object')
+                done();
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            done();
+        })
+    })
+    
+
     test('should delete a Drink', (done) => {
         let param = {
             id: ""
