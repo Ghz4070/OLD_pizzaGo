@@ -179,4 +179,20 @@ suite('Test controller User', () => {
         done();
     })
 
+    test('shloud get an user', (done) => {
+        (async () => {
+
+
+
+            const user = await User.getUserById('ck7fjwne900uc07397jgrmvb7');
+
+
+
+
+
+        })();
+
+        done();
+    })
+
 })

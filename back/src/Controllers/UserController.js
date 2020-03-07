@@ -84,10 +84,13 @@ class UserController {
 
             if(getUser.users.length > 0){
                 check = false;
+                next(check);
+            }else {
+                await validator.isEmail(email) ? check = true : check = false;
+                next(check);
             }
 
-            await validator.isEmail(email) ? check = true : check = false;
-            next(check);
+            
         })
     }
 
