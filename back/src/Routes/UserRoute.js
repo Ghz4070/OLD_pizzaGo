@@ -1,14 +1,24 @@
 import express from 'express';
+import JWT from 'jsonwebtoken';
+
 import User from '../Controllers/UserController';
 
 import { error } from '../returnFunc';
 
 export const anonymeRouteUser = express.Router();
+export const adminRouteUser = express.Router();
 
-anonymeRouteUser.route('/')
+adminRouteUser.route('/')
     .get(async (req, res) => {
-        const Users = await User.getAllUser();
-        res.json(Users);
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+        
+        if(role.indexOf('ROLE_ADMIN') !== -1){
+            const Users = await User.getAllUser();
+            res.json(Users);
+        }else{
+            res.json(error("You are not an admin"));
+        }
     })
     
 anonymeRouteUser.route('/add')

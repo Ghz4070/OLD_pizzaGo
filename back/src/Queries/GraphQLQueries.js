@@ -57,6 +57,7 @@ export const getUser = (email) => {
                 email
                 password
                 role
+                tokenActivate
             }
         }
     `
