@@ -35,3 +35,15 @@ anonymeRouteUser.route('/add')
             res.json(error('not same password'));
         }
     })
+
+anonymeRouteUser.route('/connection')
+    .get(async (req, res) => {
+        const param = {
+            data: {
+                email : req.body.email,
+                password: req.body.password,
+            }
+        }
+        const connectionUser = await User.connection(param);
+        res.json(connectionUser);
+    })
