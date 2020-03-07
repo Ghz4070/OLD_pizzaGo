@@ -48,14 +48,17 @@ class UserController {
             const checkMail = await this.existAccount(user.data.email);
 
             if(checkMail.result !== "not found"){
-                const { password } = checkMail.result.users[0];
-                const decrypt = await this.decryptorData(user.data.password, password);
-
-                if(decrypt){
-                    const token = await this.createTokenJWT(checkMail.result.users[0]);
-                    next(success(token));
-                }else {
-                    next(error('Error password'));
+                const { password, tokenActivate } = checkMail.result.users[0];
+                if(await this.checkAccountActivate(tokenActivate)){
+                    const decrypt = await this.decryptorData(user.data.password, password);
+                    if(decrypt){
+                        const token = await this.createTokenJWT(checkMail.result.users[0]);
+                        next(success(token));
+                    }else {
+                        next(error('Error password'));
+                    }
+                }else{
+                    next(error('Activate your account'));
                 }
             }else {
                 next(error('Account not exist'));
@@ -111,6 +114,16 @@ class UserController {
         return new Promise(async (next) => {
             const token = await JWT.sign({role: user.role, email: user.email},secret,{algorithm: 'HS256',expiresIn: '24h'});
             next(token);
+        })
+    }
+
+    checkAccountActivate(tokenActivate) {
+        return new Promise(async (next) => {
+            if(tokenActivate.trim() == "" || tokenActivate == null){
+                next(true);
+            }else {
+                next(false);
+            }
         })
     }
 }
