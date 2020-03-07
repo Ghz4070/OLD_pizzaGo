@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import bcrypt from 'bcryptjs';
+import JWT from 'jsonwebtoken';
 
 import User from '../Controllers/UserController';
 import { prisma } from '../Providers/generated/prisma-client';
@@ -128,6 +129,52 @@ suite('Test controller User', () => {
                 
             }
 
+        })();
+        done();
+    })
+
+    test('should connection', (done) => {
+        (async () => {
+            let boolFalseStructure = false;
+
+            const user = {
+                data : {
+                    email : 'paiva.raphaelt@gmail.com',
+                    password: 'a',
+                    role : ['ROLE_USER']
+                }
+            }
+
+            const tokenObject = {
+                header: {alg : 'HS256', typ: 'JWT'},
+                payload: 
+                    {
+                      role: ['ROLE_USER'],
+                      email: 'paiva.raphaelt@gmail.com',
+                      iat: 15833597672,
+                      exp: 1583684072  
+                    },
+                signature: 'aZ4sIDv53ezdIOfb-Qmr3cYF71UXs_N2WjMsekPWgOk'
+            };
+
+            const structureObjectToken = {
+                header: 'object',
+                payload: 'object',
+                signature: 'string'
+            };
+
+            const connection = await User.connection(user);
+            const decode = await JWT.decode(connection.result, {complete: true});
+
+            const keyStructure = Object.keys(structureObjectToken);
+                
+            for(const i in keyStructure){
+                if(typeof(decode[keyStructure[i]]) !== structureObjectToken[keyStructure[i]]){
+                    boolFalseStructure = true;
+                }
+            }
+            assert.equal(boolFalseStructure, false, 'error in structure');
+            assert.typeOf(decode, 'object', 'isnt an object');
         })();
         done();
     })
