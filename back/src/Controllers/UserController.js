@@ -54,6 +54,16 @@ class UserController {
         })
     }
 
+    deleteUser(id) {
+        return new Promise(async (next) => {
+            if(await this.checkUserExistByID(id)){
+                next(success('User has been deleted'));
+            }else{
+                next(error("Doesn't exist"));
+            }
+        })
+    }
+
     connection(user) {
         return new Promise(async (next) => {
             const checkMail = await this.existAccount(user.data.email);
@@ -73,6 +83,17 @@ class UserController {
                 }
             }else {
                 next(error('Account not exist'));
+            }
+        })
+    }
+
+    checkUserExistByID(userId){
+        return new Promise(async (next) => {
+            const checkuser = await prisma.user({id: userId});
+            if(checkuser){
+                next(true);
+            }else{
+                next(false);
             }
         })
     }

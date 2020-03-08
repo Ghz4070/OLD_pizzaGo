@@ -59,7 +59,6 @@ class DrinkController {
         return new Promise(async (next) => {
             if (await check) {
                 const Drink = await prisma.deleteDrink(param);
-                console.log(param);
                 next(success('The Drink has beed deleted'));
             } else {
                 next(error('No Drink with this id'));
