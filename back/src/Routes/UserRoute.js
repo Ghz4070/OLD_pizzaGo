@@ -20,6 +20,18 @@ adminRouteUser.route('/')
             res.json(error("You are not an admin"));
         }
     })
+adminRouteUser.route('/:id')
+    .get(async (req, res) => {
+        const decode = await JWT.decode(req.headers['x-access-token'], {complete: true});
+        const { role } = decode.payload;
+        
+        if(role.indexOf('ROLE_ADMIN') !== -1){
+            const user = await User.getUserById(req.params.id);
+            res.json(user);
+        }else{
+            res.json(error("You are not an admin"));
+        }
+    })
     
 anonymeRouteUser.route('/add')
     .post(async (req, res) => {

@@ -28,12 +28,11 @@ suite('Test controller User', () => {
         User.getAllUser()
         .then((users) => {
             const keyStructure = Object.keys(structureOjectUser);
-            for(const i in users.result[0]){
+            for(const i in users.result[1]){
                 if(keyStructure.indexOf(i) === -1){
-                    console.log(keyStructure[i])
                     boolFalseStructure = true;
                 }
-                if(typeof(users.result[0][i]) !== structureOjectUser[i]){
+                if(typeof(users.result[1][i]) !== structureOjectUser[i]){
                     boolFalseTypeOf = true;   
                 }
             }
@@ -180,19 +179,42 @@ suite('Test controller User', () => {
     })
 
     test('shloud get an user', (done) => {
-        (async () => {
+        let boolFalseStructure = false;
+        let boolFalseTypeOf = false;
 
+        const structureOjectUser = {
+            tel: 'string',
+            zip: 'number',
+            email: 'string',
+            role: 'object',
+            firstname: 'string',
+            country: 'string',
+            lastname: 'string',
+            address: 'string',
+            password: 'string',
+            id: 'string',
+            tokenResetPassword:'string',
+            tokenActivate: 'string' 
+        }
 
+        User.getUserById('ck7hq2mzz002t0796660mcfx7')
+        .then((user) => {
+            const keyStructure = Object.keys(structureOjectUser);
+                  
+            for(const i in user.result){
+                if(keyStructure.indexOf(i) === -1){ 
+                    boolFalseStructure = true;
+                }
+                if(typeof(user.result[i]) !== structureOjectUser[i]){
+                    boolFalseTypeOf = true;   
+                }
+            }
 
-            const user = await User.getUserById('ck7fjwne900uc07397jgrmvb7');
-
-
-
-
-
-        })();
-
-        done();
+            assert.equal(boolFalseStructure, false, 'error in structure object');
+            assert.equal(boolFalseTypeOf, false, 'error in typeof object key');
+            done();
+        })
+        .catch(err => done(err))
     })
 
 })

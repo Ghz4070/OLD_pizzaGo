@@ -19,6 +19,17 @@ class UserController {
         })
     }
 
+    getUserById(id) {
+        return new Promise(async (next) => {
+            const User = await prisma.user({id: id});
+            if(User) {
+                next(success(User));
+            }else {
+                next(success('user doesnt exist'));
+            }
+        })
+    }
+
     addUser(user) {
         return new Promise (async (next) => {
             if(await this.existEmail(user.data.email)){
