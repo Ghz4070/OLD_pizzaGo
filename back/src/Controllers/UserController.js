@@ -25,7 +25,7 @@ class UserController {
             if(User) {
                 next(success(User));
             }else {
-                next(success('user doesnt exist'));
+                next(error('user doesnt exist'));
             }
         })
     }
