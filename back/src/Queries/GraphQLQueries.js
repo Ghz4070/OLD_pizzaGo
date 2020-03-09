@@ -49,3 +49,16 @@ export const getOnlyMailUser = (email) => {
         }
     `
 }
+
+export const getUser = (email) => {
+    return `
+        query {
+            users(where : {email : "${email}"}){
+                email
+                password
+                role
+                tokenActivate
+            }
+        }
+    `
+}

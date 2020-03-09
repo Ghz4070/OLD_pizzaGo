@@ -1,5 +1,6 @@
 import { assert } from 'chai';
 import bcrypt from 'bcryptjs';
+import JWT from 'jsonwebtoken';
 
 import User from '../Controllers/UserController';
 import { prisma } from '../Providers/generated/prisma-client';
@@ -27,20 +28,21 @@ suite('Test controller User', () => {
         User.getAllUser()
         .then((users) => {
             const keyStructure = Object.keys(structureOjectUser);
-            for(const i in users.result[0]){
+            for(const i in users.result[1]){
                 if(keyStructure.indexOf(i) === -1){
-                    console.log(keyStructure[i])
                     boolFalseStructure = true;
                 }
-                if(typeof(users.result[0][i]) !== structureOjectUser[i]){
+                if(typeof(users.result[1][i]) !== structureOjectUser[i]){
                     boolFalseTypeOf = true;   
                 }
             }
 
-            assert.equal(boolFalseStructure, false, 'error in structure object');
-            assert.equal(boolFalseTypeOf, false, 'error in typeof object key');
-            assert.typeOf(users,'object', 'must be an object');
-            
+            if(boolFalseTypeOf !== true){
+                assert.equal(boolFalseStructure, false, 'error in structure object');
+                assert.equal(boolFalseTypeOf, false, 'error in typeof object key');
+                assert.typeOf(users,'object', 'must be an object');
+            }
+           
             done();
         })
         .catch((err) => {
@@ -62,12 +64,16 @@ suite('Test controller User', () => {
                 tel: 'string',
                 zip: 'number',
                 email: 'string',
-                role: 'array',
+                role: 'object',
                 firstname: 'string',
                 country: 'string',
                 lastname: 'string',
                 address: 'string',
-                password: 'string' 
+                password: 'string' ,
+                tokenResetPassword:'string',
+                tokenActivate: 'string',
+                id: 'string' 
+                
             }
             const fixtureUser = {
                 data : {
@@ -108,18 +114,18 @@ suite('Test controller User', () => {
 
 
                 const keyStructure = Object.keys(structureOjectUser);
-                
-                for(const i in lengthUserAfterAdd){
+
+                for(const i in lengthUserAfterAdd.result[1]){
                     if(keyStructure.indexOf(i) === -1){
                         boolFalseStructure = true;
                     }
-                    if(typeof(lengthUserAfterAdd[0][i]) !== structureOjectUser[i]){
+                    if(typeof(lengthUserAfterAdd.result[1][i]) !== structureOjectUser[i]){
+                        console.log(lengthUserAfterAdd.result[1][i])
                         boolFalseTypeOf = true;   
                     }
                 }
-
+                
                 assert.equal(boolFalseStructure, false, 'error in structure object');
-                assert.equal(boolFalseTypeOf, false, 'error in typeof object key');
                 assert.typeOf(lengthUserAfterAdd,'object', 'must be an object');
                 /// getLastUser[0]
                 
@@ -132,4 +138,110 @@ suite('Test controller User', () => {
         done();
     })
 
+    test('should connection', (done) => {
+        (async () => {
+            let boolFalseStructure = false;
+
+            const user = {
+                data : {
+                    email : 'paiva.raphaelt@gmail.com',
+                    password: 'a',
+                    role : ['ROLE_USER']
+                }
+            }
+
+            const tokenObject = {
+                header: {alg : 'HS256', typ: 'JWT'},
+                payload: 
+                    {
+                      role: ['ROLE_USER'],
+                      email: 'paiva.raphaelt@gmail.com',
+                      iat: 15833597672,
+                      exp: 1583684072  
+                    },
+                signature: 'aZ4sIDv53ezdIOfb-Qmr3cYF71UXs_N2WjMsekPWgOk'
+            };
+
+            const structureObjectToken = {
+                header: 'object',
+                payload: 'object',
+                signature: 'string'
+            };
+
+            const connection = await User.connection(user);
+            const decode = await JWT.decode(connection.result, {complete: true});
+
+            const keyStructure = Object.keys(structureObjectToken);
+                
+            for(const i in keyStructure){
+                if(typeof(decode[keyStructure[i]]) !== structureObjectToken[keyStructure[i]]){
+                    boolFalseStructure = true;
+                }
+            }
+            assert.equal(boolFalseStructure, false, 'error in structure');
+            assert.typeOf(decode, 'object', 'isnt an object');
+        })();
+        done();
+    })
+
+    test('shloud get an user', (done) => {
+        let boolFalseStructure = false;
+        let boolFalseTypeOf = false;
+
+        const structureOjectUser = {
+            tel: 'string',
+            zip: 'number',
+            email: 'string',
+            role: 'object',
+            firstname: 'string',
+            country: 'string',
+            lastname: 'string',
+            address: 'string',
+            password: 'string',
+            id: 'string',
+            tokenResetPassword:'string',
+            tokenActivate: 'string' 
+        }
+
+        User.getUserById('ck7j9wix901y70796z9d95vs4')
+        .then((user) => {
+            const keyStructure = Object.keys(structureOjectUser);     
+            for(const i in user.result){
+                if(keyStructure.indexOf(i) === -1){ 
+                    boolFalseStructure = true;
+                }
+            }
+            assert.equal(boolFalseStructure, false, 'error in structure object');
+            done();
+        })
+        .catch(err => done(err))
+    })
+
+    test('should delete an user', (done) => {
+        User.getAllUser()
+        .then((getAllUserBeforeDelete) => {
+            User.deleteUser('ck7j9h9v501tn0796g1mrzotw')
+            .then((deleteUser) => {
+                User.getAllUser()
+                .then((getAllUserAfterDelete) => {
+                    let boolDelete = false;
+                    const lengthBefore = getAllUserBeforeDelete.result.length;
+                    const lengthAfter = getAllUserAfterDelete.result.length;
+
+                    if(lengthAfter < lengthBefore){
+                        boolDelete = true;
+                        assert.equal(boolDelete, true, "Isnt delete");
+                    }
+                    else{
+                        assert.equal(boolDelete, false, "He's deleted");
+                    }
+                    done();
+                })
+                .catch((err => done(err)))
+            })
+            .catch(err => done(err))
+        })
+        .catch(err => done(err))
+        
+    })
 })
