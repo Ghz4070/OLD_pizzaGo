@@ -1,4 +1,4 @@
-const {prisma} = require('../Providers/generated/prisma-client');
+const { prisma } = require('../../src/generated/prisma-client');
 
 async function pizzaFixture() {
 
@@ -6,37 +6,36 @@ async function pizzaFixture() {
         price: 20.09,
         size: 'L',
         composition: {
-            sauce : 'tomato',
-            cheese: true 
+            sauce: 'tomato',
+            cheese: true
         },
         ingredient: {
             connect: {
-                id: 'ck79bqj4j001e0739t1cc1uwj'
+                id: 'ck8bzequz001p0762sfftzb10'
             }
         },
         category: {
             connect: {
-                id: 'ck79bqmim001o0739bbrrltba'
+                id: 'ck8bzcyzg00100762rvgzdujb'
             }
         }
     })
-
 
     await prisma.createPizza({
         price: 40.39,
         size: 'XL',
         composition: {
-            sauce : 'tomato',
-            cheese: false 
+            sauce: 'tomato',
+            cheese: false
         },
         ingredient: {
             connect: {
-                id: 'ck79bqj5g001j0739verzunk9'
+                id: 'ck8bzeqwe001u0762vzvwukpa'
             }
         },
         category: {
             connect: {
-                id: 'ck79bqmjd001t07396lyh6cj0'
+                id: 'ck8bzcyxr000v0762ws3bzhjg'
             }
         }
     })

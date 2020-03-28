@@ -1,4 +1,4 @@
-const {prisma} = require('../Providers/generated/prisma-client');
+const { prisma } = require('../../src/generated/prisma-client');
 
 async function ingredientFixture() {
     await prisma.createIngredient({

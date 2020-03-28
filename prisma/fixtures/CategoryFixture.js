@@ -1,10 +1,9 @@
-const {prisma} = require('../Providers/generated/prisma-client');
+const { prisma } = require('../../src/generated/prisma-client');
 
 async function categoryFixture() {
     await prisma.createCategory({
-       name: 'Première classe'
+        name: 'Première classe'
     })
-
 
     await prisma.createCategory({
         name: 'Deuxième classe'
