@@ -18,7 +18,7 @@ git clone git@github.com:Ghz4070/pizzaGo.git
 Install Node dependencies:
 
 ```
-cd pizzaGo/back
+cd pizzaGo/
 npm install
 	ou
 yarn install
@@ -29,6 +29,7 @@ yarn install
 This example is based on Docker. If you don't have Docker installed, you can get it from [here](https://store.docker.com/search?type=edition&offering=community). Use the Docker Compose CLI to launch the Docker containers specified in [docker-compose.yml](./back/docker-compose.yml):
 
 ```
+cd prisma/
 docker-compose up -d
 ```
 
@@ -47,7 +48,9 @@ yarn global add prisma
 To deploy the datamodel for this example, run the following command:
 
 ```
+cd prisma/
 prisma deploy
+and node ./fixtures/FilesNameFixture.js
 ```
 
 ### 5. Run the script
