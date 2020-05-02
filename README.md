@@ -19,8 +19,7 @@ Install Node dependencies:
 
 ```
 cd pizzaGo/
-npm install
-	ou
+
 yarn install
 ```
 
@@ -30,6 +29,7 @@ This example is based on Docker. If you don't have Docker installed, you can get
 
 ```
 cd prisma/
+
 docker-compose up -d
 ```
 
@@ -50,7 +50,7 @@ To deploy the datamodel for this example, run the following command:
 ```
 cd prisma/
 prisma deploy
-and node ./fixtures/FilesNameFixture.js
+and node ./prisma/fixtures/FilesNameFixture.js
 ```
 
 ### 5. Run the script
@@ -58,8 +58,7 @@ and node ./fixtures/FilesNameFixture.js
 Execute the script with this command: 
 
 ```
-npm run start
-	ou 
+
 yarn start
 ```
 
